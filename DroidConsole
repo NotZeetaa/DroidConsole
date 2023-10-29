@@ -2,3 +2,19 @@
 
 printf "Welcome to DroidConsole!\n"
 printf "- Here you can costumize/improve your Android"
+sleep 1
+
+printf "Choose what u wanna do: \n"
+printf "1 - Android Optimizations"
+read choice
+
+
+
+
+# Android optimizations
+if [ "$choice" -eq 1 ];
+then
+    printf "U chose Android Optimizations"
+else
+    printf "U didn't chose Android Optimizations"
+fi
