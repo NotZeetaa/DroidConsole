@@ -1,13 +1,4 @@
 #!/system/bin/sh
 
-ID="$(id -u)"
-
-case $ID in
-0)
-echo "DroidConsole working..."
-;;
-*)
-echo -e "$Y Superuser (su) rights is needed! $N"
-exit 1
-;;
-esac
+printf "Welcome to DroidConsole!\n"
+printf "- Here you can costumize/improve your Android"
