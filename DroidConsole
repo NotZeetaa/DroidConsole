@@ -60,7 +60,7 @@ finish() {
     blue
     echo "Redirecting..."
     sleep 2
-    reset
+    main
 }
 
 leave() {
