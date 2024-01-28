@@ -174,7 +174,9 @@ main() {
     animation
     echo "5 - About"
     animation
-    echo "6 - Exit"
+    echo "6 - Donate"
+    animation
+    echo "7 - Exit"
     space
     reset
     echo "Your input: "
@@ -187,7 +189,7 @@ main() {
             gpu
             ;;
         3)
-            am start -a android.intent.action.VIEW -d "http://notzeetaa.github.io/Donate-NotZeetaa"
+            ram
             ;;
         4)
             clear
@@ -215,6 +217,10 @@ main() {
             reset
             ;;
         6)
+            am start -a android.intent.action.VIEW -d "http://notzeetaa.github.io/Donate-NotZeetaa"
+            main
+            ;;
+        7)
             leave
             ;;
         *)
