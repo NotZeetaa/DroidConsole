@@ -4,6 +4,7 @@
 CONFIG=/data/adb/modules/DroidConsole/config.sh
 S2=/sys/devices/system/cpu/cpufreq/schedutil
 SC=/sys/devices/system/cpu/cpu0/cpufreq/schedutil
+KGSL=/sys/class/kgsl/kgsl-3d0/
 
 # Functions
 red() {
@@ -77,6 +78,63 @@ leave() {
     exit 0
 }
 
+gpu_throttling() {
+    clear
+    red
+    animation_title
+    echo "********************************"
+    animation_title
+    echo "      × GPU Throttling ×      "
+    animation_title
+    echo "********************************"
+    green
+    space
+    animation
+    echo "1 - Turn off throttling"
+    red
+    space
+    animation
+    echo "* NOTE * Turning off gpu throttling can lead to heat and maybe more dangeours situations * NOTE *"
+    green
+    space
+    animation
+    echo "2 - Turn on throttling"
+    animation
+    echo "3 - Go back"
+    animation
+    echo "4 - Main"
+    animation
+    echo "5 - Exit"
+    reset
+    space
+    echo "Your input: "
+    read gpu_throttling_input
+    case $gpu_throttling_input in
+        1)
+            echo "0" > $KGSL/throttling
+            finish
+            ;;
+        2)
+            echo "1" > $KGSL/throttling
+            finish
+            ;;
+        3)
+            gpu
+            ;;
+        4)
+            main
+            ;;
+        5)
+            leave
+            ;;
+        *)
+            red
+            echo "Invalid input!"
+            reset
+            ;;
+    esac
+}
+
 gpu() {
     clear
     red
@@ -98,6 +156,22 @@ gpu() {
     space
     echo "Your input: "
     read gpu_input
+    case $gpu_input in
+        1)
+            gpu_throttling
+            ;;
+        2)
+            main
+            ;;
+        3)
+            leave
+            ;;
+        *)
+            red
+            echo "Invalid input!"
+            reset
+            ;;
+    esac
 }
 
 cpu() {
