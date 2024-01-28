@@ -80,10 +80,24 @@ leave() {
 gpu() {
     clear
     red
+    animation_title
     echo "*****************************"
+    animation_title
     echo "      × GPU Tweaks ×      "
+    animation_title
     echo "*****************************"
+    green
+    space
+    animation
+    echo "1 - GPU Throttling"
+    animation
+    echo "2 - Main"
+    animation
+    echo "3 - Exit"
     reset
+    space
+    echo "Your input: "
+    read gpu_input
 }
 
 cpu() {
@@ -125,7 +139,7 @@ cpu() {
             cpu
             ;;
         2)
-        
+
             ;;
         3)
             main
