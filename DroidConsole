@@ -1,4 +1,227 @@
 #!/system/bin/sh
 
-ui_print "Welcome to DroidConsole!"
-ui_print "- Here you can costumize your Android experience"
+# Variables
+CONFIG=/data/adb/modules/DroidConsole/config.sh
+S2=/sys/devices/system/cpu/cpufreq/schedutil
+SC=/sys/devices/system/cpu/cpu0/cpufreq/schedutil
+
+# Functions
+red() {
+    echo -en "\e[31m"
+}
+
+green() {
+    echo -en "\e[32m"
+}
+
+yellow() {
+    echo -en "\e[33m"
+}
+
+blue() {
+    echo -en "\e[34m"
+}
+
+pink() {
+    echo -en "\e[35m"
+}
+
+reset() {
+    echo -en "\e[0m"
+}
+
+space() {
+    echo ""
+}
+
+animation_title() {
+    sleep 0.2
+}
+
+animation() {
+    sleep 0.1
+}
+
+finish() {
+    clear
+    pink
+    echo "Applying it..."
+    sleep 1.5
+    clear
+    yellow
+    animation
+    echo "**********************"
+    animation
+    echo "      × Done ×      "
+    animation
+    echo "**********************"
+    space
+    blue
+    echo "Redirecting..."
+    sleep 2
+    reset
+}
+
+leave() {
+    clear
+    pink
+    space
+    animation
+    echo "**************************************************"
+    animation
+    echo "      × Thank you for using DroidConsole! ×      "
+    animation
+    echo "**************************************************"
+    space
+    reset
+    exit 0
+}
+
+gpu() {
+    clear
+    red
+    echo "*****************************"
+    echo "      × GPU Tweaks ×      "
+    echo "*****************************"
+    reset
+}
+
+cpu() {
+    clear
+    red
+    animation_title
+    echo "*****************************"
+    animation_title
+    echo "      × CPU Tweaks ×      "
+    animation_title
+    echo "*****************************"
+    green
+    space
+    animation
+    echo "1 - Schedutil rate limits"
+    animation
+    echo "2 - Iowait boost"
+    animation
+    echo "3 - Main"
+    animation
+    echo "4 - Exit"
+    reset
+    space
+    echo "Your input: "
+    read cpu_input
+    case $cpu_input in
+        1)
+            if [ -d $S2 ]; then
+                echo "500" > $S2/up_rate_limit_us
+                echo "20000" > $S2/down_rate_limit_us
+            elif [ -e $SC ]; then
+                for cpu in /sys/devices/system/cpu/*/cpufreq/schedutil
+                do
+                    echo "500" > "${cpu}/up_rate_limit_us"
+                    echo "20000" > "${cpu}/down_rate_limit_us"
+                done
+            fi
+            finish
+            cpu
+            ;;
+        2)
+        
+            ;;
+        3)
+            main
+            ;;
+        4)
+            leave
+            ;;
+        5)
+            red
+            echo "Invalid input!"
+            reset
+            ;;
+    esac
+    reset
+}
+
+ram() {
+    clear
+    red
+    echo "*****************************"
+    echo "      × RAM Tweaks ×      "
+    echo "*****************************"
+    reset
+}
+
+main() {
+    clear
+    echo -en "\e[40m\e[37m"
+    red
+    animation_title
+    echo "*****************************"
+    animation_title
+    echo "      × DroidConsole ×      "
+    animation_title
+    echo "*****************************"
+    green
+    space
+    animation
+    echo "1 - CPU tweaks"
+    animation
+    echo "2 - GPU tweaks"
+    animation
+    echo "3 - RAM tweaks"
+    animation
+    echo "4 - Github"
+    animation
+    echo "5 - About"
+    animation
+    echo "6 - Exit"
+    space
+    reset
+    echo "Your input: "
+    read input
+    case $input in
+        1)
+            cpu
+            ;;
+        2)
+            gpu
+            ;;
+        3)
+            am start -a android.intent.action.VIEW -d "http://notzeetaa.github.io/Donate-NotZeetaa"
+            ;;
+        4)
+            clear
+            blue
+            animation
+            echo "Our github link:"
+            space
+            animation
+            echo "× https://github.com/NotZeetaa/DroidConsole ×"
+            space
+            animation
+            echo "1 - Go back"
+            animation
+            echo "2 - Exit"
+            reset
+            space
+            animation
+            echo "Your input: "
+            read input2
+            if [ $input2 -eq "1" ]; then
+                main
+            elif [ $input2 -eq "2" ]; then
+                exit 0
+            fi
+            reset
+            ;;
+        6)
+            leave
+            ;;
+        *)
+            echo "wrong"
+            ;;
+    esac
+}
+
+# Call the main function
+main
