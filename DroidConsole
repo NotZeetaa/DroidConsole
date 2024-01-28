@@ -224,7 +224,7 @@ cpu() {
         4)
             leave
             ;;
-        5)
+        *)
             red
             echo "Invalid input!"
             reset
