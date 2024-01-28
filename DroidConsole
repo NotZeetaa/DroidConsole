@@ -112,10 +112,12 @@ gpu_throttling() {
     case $gpu_throttling_input in
         1)
             echo "0" > $KGSL/throttling
+            sed -i '/^GPU_THROTTLING=/c\GPU_THROTTLING="0"' $CONFIG
             finish
             ;;
         2)
             echo "1" > $KGSL/throttling
+            sed -i '/^GPU_THROTTLING=/c\GPU_THROTTLING="1"' $CONFIG
             finish
             ;;
         3)
@@ -209,6 +211,7 @@ cpu() {
                     echo "20000" > "${cpu}/down_rate_limit_us"
                 done
             fi
+            sed -i '/^CPU_RATELIMITS=/c\CPU_RATELIMITS="1"' $CONFIG
             finish
             cpu
             ;;

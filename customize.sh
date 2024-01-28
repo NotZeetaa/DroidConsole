@@ -17,6 +17,7 @@ find $MODPATH/* -maxdepth 0 \
 ! -name 'post-fs-data.sh' \
 ! -name 'service.sh' \
 ! -name 'system' \
+! -name 'config.sh' \
 -exec rm -rf {} \;
 
 # Settings dir and file permission
