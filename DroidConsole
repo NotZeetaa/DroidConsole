@@ -303,7 +303,7 @@ main() {
             if [ $input2 -eq "1" ]; then
                 main
             elif [ $input2 -eq "2" ]; then
-                exit 0
+                leave
             fi
             reset
             ;;
