@@ -176,6 +176,75 @@ gpu() {
     esac
 }
 
+cpu_iowait_boost() {
+    clear
+    red
+    animation_title
+    echo "********************************"
+    animation_title
+    echo "      × IO Wait Boost ×      "
+    animation_title
+    echo "********************************"
+    green
+    space
+    animation
+    echo "1 - Enable IO Wait Boost"
+    animation
+    echo "2 - Disable IO Wait Boost"
+    animation
+    echo "3 - Go back"
+    animation
+    echo "4 - Main"
+    animation
+    echo "5 - Exit"
+    reset
+    space
+    echo "Your input: "
+    read input
+    case $input in
+        1)
+            if [ -d $S2 ]; then
+                echo "1" > $S2/iowait_boost_enable
+            elif [ -e $SC ]; then
+                for cpu in /sys/devices/system/cpu/*/cpufreq/schedutil
+                do
+                    echo "1" > "${cpu}/iowait_boost_enable"
+                done
+            fi
+            sed -i '/^IOWAIT_BOOST=/c\IOWAIT_BOOST="1"' $CONFIG
+            finish
+            cpu
+            ;;
+        2)
+            if [ -d $S2 ]; then
+                echo "0" > $S2/iowait_boost_enable
+            elif [ -e $SC ]; then
+                for cpu in /sys/devices/system/cpu/*/cpufreq/schedutil
+                do
+                    echo "0" > "${cpu}/iowait_boost_enable"
+                done
+            fi
+            sed -i '/^IOWAIT_BOOST=/c\IOWAIT_BOOST="0"' $CONFIG
+            finish
+            cpu
+            ;;
+        3)
+            cpu
+            ;;
+        4)
+            main
+            ;;
+        5)
+            leave
+            ;;
+        *)
+            red
+            echo "Invalid input!"
+            reset
+            ;;
+    esac
+}
+
 cpu() {
     clear
     red
@@ -216,7 +285,7 @@ cpu() {
             cpu
             ;;
         2)
-
+            cpu_iowait_boost
             ;;
         3)
             main
