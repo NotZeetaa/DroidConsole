@@ -307,6 +307,30 @@ main() {
             fi
             reset
             ;;
+        5)
+            animation
+            echo "******************************************************************************************************************************"
+            animation
+            echo "      × DroidConsole: An open-source Android terminal for tailoring and tweaking your device to suit your preferences. ×      "
+            animation
+            echo "******************************************************************************************************************************"
+            green
+            space
+            animation
+            echo "1 - Go back"
+            animation
+            echo "2 - Exit"
+            reset
+            space
+            animation
+            echo "Your input: "
+            read input
+            if [ $input -eq "1" ]; then
+                main
+            elif [ $input -eq "2" ]; then
+                leave
+            fi
+            ;;
         6)
             am start -a android.intent.action.VIEW -d "http://notzeetaa.github.io/Donate-NotZeetaa"
             main
