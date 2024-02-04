@@ -5,6 +5,7 @@ CONFIG=/data/adb/modules/DroidConsole/config.sh
 S2=/sys/devices/system/cpu/cpufreq/schedutil
 SC=/sys/devices/system/cpu/cpu0/cpufreq/schedutil
 KGSL=/sys/class/kgsl/kgsl-3d0/
+WINDOW=/data/system/users/0/settings_secure.xml
 
 # Functions
 red() {
@@ -311,6 +312,98 @@ ram() {
     reset
 }
 
+window_feature() {
+    clear
+    red
+    animation_title
+    echo "**********************************"
+    animation_title
+    echo "      × Window ignore secure ×      "
+    animation_title
+    echo "**********************************"
+    green
+    space
+    animation
+    echo "1 - Enable window ignore secure feature"
+    animation
+    echo "2 - Disable window ignore secure feature"
+    animation
+    echo "3 - Go back"
+    animation
+    echo "4 - Main"
+    animation
+    echo "5 - Exit"
+    reset
+    space
+    echo "Your input: "
+    read input
+    case $input in
+        1)
+            if grep -q "window_ignore_secure" $WINDOW; then
+                settings put secure window_ignore_secure "1"
+            fi
+            ;;
+        2)
+            if grep -q "window_ignore_secure" $WINDOW; then
+                settings put secure window_ignore_secure "0"
+            fi
+            ;;
+        3)
+            misc
+            ;;
+        4)
+            main
+            ;;
+        5)
+            leave
+            ;;
+        *)
+            red
+            echo "Invalid input!"
+            reset
+            ;;
+    esac
+}
+
+misc() {
+    clear
+    red
+    animation_title
+    echo "*****************************"
+    animation_title
+    echo "      × Miscellaneous ×      "
+    animation_title
+    echo "*****************************"
+    green
+    space
+    animation
+    echo "1 - Window ignore secure feature"
+    animation
+    echo "2 - Main"
+    animation
+    echo "3 - Exit"
+    reset
+    space
+    echo "Your input: "
+    read input
+    case $input in
+        1)
+            window_feature
+            ;;
+        2)
+            main
+            ;;
+        3)
+            leave
+            ;;
+        *)
+            red
+            echo "Invalid input!"
+            reset
+            ;;
+    esac
+}
+
 main() {
     clear
     echo -en "\e[40m\e[37m"
@@ -330,13 +423,15 @@ main() {
     animation
     echo "3 - RAM tweaks"
     animation
-    echo "4 - Github"
+    echo "4 - Miscellaneous"
     animation
-    echo "5 - About"
+    echo "5 - Github"
     animation
-    echo "6 - Donate"
+    echo "6 - About"
     animation
-    echo "7 - Exit"
+    echo "7 - Donate"
+    animation
+    echo "8 - Exit"
     space
     reset
     echo "Your input: "
@@ -351,7 +446,11 @@ main() {
         3)
             ram
             ;;
+
         4)
+            misc
+            ;;
+        5)
             clear
             blue
             animation
@@ -376,7 +475,7 @@ main() {
             fi
             reset
             ;;
-        5)
+        6)
             animation
             echo "******************************************************************************************************************************"
             animation
@@ -400,11 +499,11 @@ main() {
                 leave
             fi
             ;;
-        6)
+        7)
             am start -a android.intent.action.VIEW -d "http://notzeetaa.github.io/Donate-NotZeetaa"
             main
             ;;
-        7)
+        8)
             leave
             ;;
         *)
