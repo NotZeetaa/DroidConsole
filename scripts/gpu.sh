@@ -1,0 +1,105 @@
+#!/system/bin/sh
+
+# Call variables script
+. $(pwd)/variables.sh
+
+gpu_throttling() {
+    clear
+    red
+    animation_title
+    echo "********************************"
+    animation_title
+    echo "      × GPU Throttling ×      "
+    animation_title
+    echo "********************************"
+    green
+    space
+    animation
+    echo "1 - Turn off throttling"
+    red
+    space
+    animation
+    echo "* NOTE * Turning off gpu throttling can lead to heat and maybe more dangeours situations * NOTE *"
+    green
+    space
+    animation
+    echo "2 - Turn on throttling"
+    animation
+    echo "3 - Go back"
+    animation
+    echo "4 - Main"
+    animation
+    echo "5 - Exit"
+    reset
+    space
+    echo "Your input: "
+    read gpu_throttling_input
+    case $gpu_throttling_input in
+        1)
+            echo "0" > $KGSL/throttling
+            sed -i '/^GPU_THROTTLING=/c\GPU_THROTTLING="0"' $CONFIG
+            finish
+            ;;
+        2)
+            echo "1" > $KGSL/throttling
+            sed -i '/^GPU_THROTTLING=/c\GPU_THROTTLING="1"' $CONFIG
+            finish
+            ;;
+        3)
+            gpu
+            ;;
+        4)
+            main
+            ;;
+        5)
+            leave
+            ;;
+        *)
+            red
+            echo "Invalid input!"
+            reset
+            ;;
+    esac
+}
+
+gpu() {
+    clear
+    red
+    animation_title
+    echo "*****************************"
+    animation_title
+    echo "      × GPU Tweaks ×      "
+    animation_title
+    echo "*****************************"
+    green
+    space
+    animation
+    echo "1 - GPU Throttling"
+    animation
+    echo "2 - Main"
+    animation
+    echo "3 - Exit"
+    reset
+    space
+    echo "Your input: "
+    read gpu_input
+    case $gpu_input in
+        1)
+            gpu_throttling
+            ;;
+        2)
+            main
+            ;;
+        3)
+            leave
+            ;;
+        *)
+            red
+            echo "Invalid input!"
+            reset
+            ;;
+    esac
+}
+
+# Call the main function
+gpu
