@@ -1,4 +1,6 @@
 #!/system/bin/sh
+# Author: NotZeetaa
+# Version: BETA 1
 
 # Variables
 CONFIG=/data/adb/modules/DroidConsole/config.sh
