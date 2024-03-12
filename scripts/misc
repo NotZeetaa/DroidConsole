@@ -1,7 +1,7 @@
 #!/system/bin/sh
 
 # Call variables script
-. $(pwd)/variables.sh
+. $(pwd)/variables
 
 window_feature() {
     clear

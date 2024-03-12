@@ -8,12 +8,12 @@ set -x
  abort "- Unsupported API version: $API"
 
 mkdir -p $MODPATH/system/bin
-mv -f $MODPATH/DroidConsole.sh $MODPATH/system/bin/DroidConsole.sh
-mv -f $MODPATH/scripts/cpu.sh $MODPATH/system/bin/cpu.sh
-mv -f $MODPATH/scripts/ram.sh $MODPATH/system/bin/ram.sh
-mv -f $MODPATH/scripts/gpu.sh $MODPATH/system/bin/gpu.sh
-mv -f $MODPATH/scripts/misc.sh $MODPATH/system/bin/misc.sh
-mv -f $MODPATH/scripts/variables.sh $MODPATH/system/bin/variables.sh
+mv -f $MODPATH/DroidConsole $MODPATH/system/bin/DroidConsole
+mv -f $MODPATH/scripts/cpu $MODPATH/system/bin/cpu
+mv -f $MODPATH/scripts/ram $MODPATH/system/bin/ram
+mv -f $MODPATH/scripts/gpu $MODPATH/system/bin/gpu
+mv -f $MODPATH/scripts/misc $MODPATH/system/bin/misc
+mv -f $MODPATH/scripts/variables $MODPATH/system/bin/variables
 
 # Clean up
 ui_print "  Cleaning obsolete files"
@@ -29,9 +29,9 @@ find $MODPATH/* -maxdepth 0 \
 # Settings dir and file permission
 ui_print "  Settings permissions"
 set_perm_recursive $MODPATH 0 0 0755 0755
-set_perm $MODPATH/system/bin/DroidConsole.sh 0 2000 0755
-set_perm $MODPATH/system/bin/cpu.sh 0 2000 0755
-set_perm $MODPATH/system/bin/ram.sh 0 2000 0755
-set_perm $MODPATH/system/bin/gpu.sh 0 2000 0755
-set_perm $MODPATH/system/bin/misc.sh 0 2000 0755
-set_perm $MODPATH/system/bin/variables.sh 0 2000 0755
+set_perm $MODPATH/system/bin/DroidConsole 0 2000 0755
+set_perm $MODPATH/system/bin/cpu 0 2000 0755
+set_perm $MODPATH/system/bin/ram 0 2000 0755
+set_perm $MODPATH/system/bin/gpu 0 2000 0755
+set_perm $MODPATH/system/bin/misc 0 2000 0755
+set_perm $MODPATH/system/bin/variables 0 2000 0755

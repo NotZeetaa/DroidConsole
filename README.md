@@ -11,7 +11,7 @@ An Android terminal ToolBox.
 - After reboot open termux/any other terminal
 - Type:
 ```
-su -c './DroidConsole.sh'
+su -c DroidConsole
 ```
 
 ## Screenshots
