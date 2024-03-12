@@ -5,23 +5,6 @@
 # Call variables script
 . $(pwd)/variables
 
-# Variables
-cpu() {
-    . $(pwd)/cpu.sh
-}
-
-gpu() {
-    . $(pwd)/gpu.sh
-}
-
-misc() {
-    . $(pwd)/misc.sh
-}
-
-ram() {
-    . $(pwd)/ram.sh
-}
-
 main() {
     clear
     echo -en "\e[40m\e[37m"
