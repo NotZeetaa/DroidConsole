@@ -3,7 +3,7 @@
 # Version: BETA 1
 
 # Call variables script
-. $(pwd)/variables
+. /data/adb/modules/DroidConsole/system/bin/variables
 
 main() {
     clear
