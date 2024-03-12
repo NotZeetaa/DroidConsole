@@ -128,3 +128,6 @@ cpu() {
     esac
     reset
 }
+
+# Call the main function
+cpu
