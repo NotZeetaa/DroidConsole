@@ -44,7 +44,7 @@ animation() {
 }
 
 main() {
-    . $(pwd)/DroidConsole.sh
+    DroidConsole
 }
 
 finish() {
