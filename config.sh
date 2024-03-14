@@ -1,9 +1,9 @@
 #!/system/bin/sh
 
+# Call variables script
+. /data/adb/modules/DroidConsole/system/bin/variables
+
 # Variables
-KGSL=/sys/class/kgsl/kgsl-3d0/
-S2=/sys/devices/system/cpu/cpufreq/schedutil
-SC=/sys/devices/system/cpu/cpu0/cpufreq/schedutil
 GPU_THROTTLING=
 CPU_RATELIMITS=
 IOWAIT_BOOST=
