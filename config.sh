@@ -8,6 +8,7 @@ GPU_THROTTLING=
 CPU_RATELIMITS=
 IOWAIT_BOOST=
 RAM_SWAP=
+POWER_EFFICIENT=
 
 if [ "$GPU_THROTTLING" -eq 1 ]; then
     echo "1" > $KGSL/throttling
@@ -50,4 +51,10 @@ fi
 
 if [ "$RAM_SWAP" -eq 1 ]; then
     echo "100" > $SWP
+fi
+
+if [ "$POWER_EFFICIENT" -eq 1 ]; then
+    echo "1" > $PWR
+elif [ "$POWER_EFFICIENT" -eq 0 ]; then
+    echo "0" > $PWR
 fi

@@ -7,6 +7,7 @@ SC=/sys/devices/system/cpu/cpu0/cpufreq/schedutil
 KGSL=/sys/class/kgsl/kgsl-3d0/
 WINDOW=/data/system/users/0/settings_secure.xml
 SWP=/proc/sys/vm/swappiness
+PWR=/sys/module/workqueue/parameters/power_efficient
 
 red() {
     echo -en "\e[31m"

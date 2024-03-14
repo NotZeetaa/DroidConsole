@@ -56,6 +56,62 @@ window_feature() {
     esac
 }
 
+power_efficient() {
+    clear
+    red
+    animation_title
+    echo "********************************"
+    animation_title
+    echo "      × Power Efficient ×      "
+    animation_title
+    echo "********************************"
+    green
+    space
+    animation
+    echo "1 - Enable Power Efficient"
+    animation
+    echo "2 - Disable Power Efficient"
+    animation
+    echo "3 - Go back"
+    animation
+    echo "4 - Main"
+    animation
+    echo "5 - Exit"
+    reset
+    space
+    echo "Your input: "
+    chmod 7777 $PWR
+    read input
+    case $input in
+        1)
+            echo "1" > $PWR
+            sed -i '/^POWER_EFFICIENT=/c\POWER_EFFICIENT="1"' $CONFIG
+            finish
+            misc
+            ;;
+        2)
+            echo "0" > $PWR
+            sed -i '/^POWER_EFFICIENT=/c\POWER_EFFICIENT="0"' $CONFIG
+            finish
+            misc
+            ;;
+        3)
+            misc
+            ;;
+        4)
+            main
+            ;;
+        5)
+            leave
+            ;;
+        *)
+            red
+            echo "Invalid input!"
+            reset
+            ;;
+    esac
+}
+
 misc() {
     clear
     red
@@ -70,9 +126,11 @@ misc() {
     animation
     echo "1 - Window ignore secure feature"
     animation
-    echo "2 - Main"
+    echo "2 - Power Efficient"
     animation
-    echo "3 - Exit"
+    echo "3 - Main"
+    animation
+    echo "4 - Exit"
     reset
     space
     echo "Your input: "
@@ -82,9 +140,12 @@ misc() {
             window_feature
             ;;
         2)
-            main
+            power_efficient
             ;;
         3)
+            main
+            ;;
+        4)
             leave
             ;;
         *)
