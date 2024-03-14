@@ -7,6 +7,7 @@ SC=/sys/devices/system/cpu/cpu0/cpufreq/schedutil
 GPU_THROTTLING=
 CPU_RATELIMITS=
 IOWAIT_BOOST=
+RAM_SWAP=
 
 if [ "$GPU_THROTTLING" -eq 1 ]; then
     echo "1" > $KGSL/throttling
@@ -45,4 +46,8 @@ elif [ "$IOWAIT_BOOST" -eq 0 ]; then
             echo "0" > "${cpu}/iowait_boost_enable"
         done
     fi
+fi
+
+if [ "$RAM_SWAP" -eq 1 ]; then
+    echo "100" > $SWP
 fi

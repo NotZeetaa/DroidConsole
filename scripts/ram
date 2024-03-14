@@ -3,13 +3,86 @@
 # Call variables script
 . /data/adb/modules/DroidConsole/system/bin/variables
 
+ram_swappiness() {
+    clear
+    red
+    animation_title
+    echo "********************************"
+    animation_title
+    echo "      × RAM swappiness ×      "
+    animation_title
+    echo "********************************"
+    green
+    space
+    animation
+    echo "1 - Tweak RAM swappiness"
+    animation
+    echo "2 - Go back"
+    animation
+    echo "3 - Main"
+    animation
+    echo "4 - Exit"
+    reset
+    space
+    echo "Your input: "
+    read ram_input
+    case $ram_input in
+        1)
+            echo "100" > $SWP
+            sed -i '/^RAM_SWAP=/c\RAM_SWAP="1"' $CONFIG
+            finish
+            ;;
+        2)
+            ram
+            ;;
+        3)
+            main
+            ;;
+        4)
+            leave
+            ;;
+        *)
+            red
+            echo "Invalid input!"
+            reset
+            ;;
+    esac
+}
+
 ram() {
     clear
     red
+    animation_title
     echo "*****************************"
+    animation_title
     echo "      × RAM Tweaks ×      "
+    animation_title
     echo "*****************************"
+    green
+    space
+    animation
+    echo "1 - Swappiness"
+    animation
+    echo "2 - Main"
+    animation
+    echo "3 - Exit"
     reset
+    space
+    echo "Your input: "
+    read ram_input
+    case $ram_input in
+        1)
+            ram_swappiness
+            ;;
+        2)
+            main
+            ;;
+        *)
+            red
+            echo "Invalid input!"
+            reset
+            ;;
+    esac
 }
 
 # Call the main function
