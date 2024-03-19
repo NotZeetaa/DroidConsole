@@ -6,7 +6,9 @@ curl -F document="@$1" "https://api.telegram.org/bot${token}/sendDocument" \
      -F "disable_web_page_preview=true" \
      -F "parse_mode=html"
 }
+random_number=$((1 + RANDOM % 200))
+zip_name=DroidConsole-BETA-2-${random_number}
 echo ""
 rm -rf ./*.zip
-zip -r9 "DroidConsole-BETA-2.zip" . -x "*build*" "*.bak*" "*.git*"
-push "DroidConsole-BETA-2.zip"
+zip -r9 "$zip_name.zip" . -x "*build*" "*.bak*" "*.git*"
+push "$zip_name.zip"
