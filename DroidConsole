@@ -77,13 +77,41 @@ main() {
             reset
             ;;
         6)
-            animation
-            echo "******************************************************************************************************************************"
-            animation
-            echo "      × DroidConsole: An open-source Android terminal for tailoring and tweaking your device to suit your preferences. ×      "
-            animation
-            echo "******************************************************************************************************************************"
+            clear
             green
+            echo "--------------------------------------------------------------"
+            echo "              DroidConsole - Terminal Android Toolbox         "
+            echo "--------------------------------------------------------------"
+            echo ""
+            echo "DroidConsole is a versatile toolbox designed for Android devices,"
+            echo "empowering users with a powerful terminal interface for various tasks"
+            echo "and commands. From system management to development utilities,"
+            echo "DroidConsole provides a seamless experience for users accustomed"
+            echo "to working within a command-line environment on their Android devices."
+            echo ""
+            echo "Project Name: DroidConsole"
+            echo "Version: Beta-2"
+            echo "License: MIT License"
+            echo ""
+            echo "--------------------------------------------------------------"
+            echo "                              Author                          "
+            echo "--------------------------------------------------------------"
+            echo ""
+            echo "DroidConsole is developed and maintained by NotZeetaa."
+            echo "For any inquiries, feedback, or contributions, please contact NotZeetaa (Telegram & GitHub)."
+            echo ""
+            echo "--------------------------------------------------------------"
+            echo "                           License Information               "
+            echo "--------------------------------------------------------------"
+            echo ""
+            echo "DroidConsole is licensed under the MIT License."
+            echo "For more information, please refer to the LICENSE file included with the distribution."
+            echo ""
+            echo "--------------------------------------------------------------"
+            echo "                           Disclaimer                        "
+            echo "--------------------------------------------------------------"
+            echo ""
+            echo "This software is provided as-is and without warranty. Use at your own risk."
             space
             animation
             echo "1 - Go back"
