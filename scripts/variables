@@ -84,3 +84,29 @@ leave() {
     reset
     exit 0
 }
+
+not_supported() {
+    clear
+    red
+    animation
+    echo "**************************************************"
+    animation
+    echo "      × Your kernel/phone doesn't support this feature! ×      "
+    animation
+    echo "**************************************************"
+    space
+    animation
+    echo "1 - Go back"
+    animation
+    echo "2 - Exit"
+    reset
+    space
+    animation
+    echo "Your input: "
+    read input
+    if [ $input -eq "1" ]; then
+        main
+    elif [ $input -eq "2" ]; then
+        leave
+    fi
+}
