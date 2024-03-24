@@ -112,6 +112,75 @@ power_efficient() {
     esac
 }
 
+sultan_optimizations() {
+    if [ -d $LYB_TASK ]; then
+        clear
+        red
+        animation_title
+        echo "********************************"
+        animation_title
+        echo "      × Sultan Optimizations ×      "
+        animation_title
+        echo "********************************"
+        green
+        space
+        animation
+        echo "1 - Enable Sultan Optimizations"
+        red
+        space
+        animation
+        echo "* NOTE * Might cause bans on games like PUBG and CODM and the system might be unstable * NOTE *"
+        space
+        green
+        echo "* NOTE * This tweak is recommended for Genshin Impact * NOTE *"
+        space
+        animation
+        echo "2 - Disable Sultan Optimizations"
+        animation
+        echo "3 - Go back"
+        animation
+        echo "4 - Main"
+        animation
+        echo "5 - Exit"
+        reset
+        space
+        echo "Your input: "
+        read input
+        case $input in
+            1)
+                echo "Y" > $LYB_TASK/parameters/lyb_sultan_pid
+                echo "Y" > $LYB_TASK/parameters/lyb_sultan_pid_shrink
+                sed -i '/^SULTAN_OPTIMIZATIONS=/c\SULTAN_OPTIMIZATIONS="1"' $CONFIG
+                finish
+                misc
+                ;;
+            2)
+                echo "N" > $LYB_TASK/parameters/lyb_sultan_pid
+                echo "N" > $LYB_TASK/parameters/lyb_sultan_pid_shrink
+                sed -i '/^SULTAN_OPTIMIZATIONS=/c\SULTAN_OPTIMIZATIONS="0"' $CONFIG
+                finish
+                misc
+                ;;
+            3)
+                misc
+                ;;
+            4)
+                main
+                ;;
+            5)
+                leave
+                ;;
+            *)
+                red
+                echo "Invalid input!"
+                reset
+                ;;
+        esac
+    else
+        not_supported
+    fi
+}
+
 misc() {
     clear
     red
@@ -128,9 +197,11 @@ misc() {
     animation
     echo "2 - Power Efficient"
     animation
-    echo "3 - Main"
+    echo "3 - Sultan Optimizations"
     animation
-    echo "4 - Exit"
+    echo "4 - Main"
+    animation
+    echo "5 - Exit"
     reset
     space
     echo "Your input: "
@@ -143,9 +214,12 @@ misc() {
             power_efficient
             ;;
         3)
-            main
+            sultan_optimizations
             ;;
         4)
+            main
+            ;;
+        5)
             leave
             ;;
         *)

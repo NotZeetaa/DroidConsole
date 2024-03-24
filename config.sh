@@ -11,6 +11,7 @@ RAM_SWAP=
 POWER_EFFICIENT=
 GPU_POWER_LEVEL=
 GPU_POWER_MANAGEMENT=
+SULTAN_OPTIMIZATIONS=
 
 if [ "$GPU_THROTTLING" -eq 1 ]; then
     echo "1" > $KGSL/throttling
@@ -77,4 +78,12 @@ elif [ "$GPU_POWER_MANAGEMENT" -eq 0]; then
     echo "0" > $KGSL/force_clk_on
     echo "0" > $KGSL/force_no_nap
     echo "0" > $KGSL/force_rail_on
+fi
+
+if [ "$SULTAN_OPTIMIZATIONS" -eq 1 ]; then
+    echo "Y" > $LYB_TASK/parameters/lyb_sultan_pid
+    echo "Y" > $LYB_TASK/parameters/lyb_sultan_pid_shrink
+elif [ "$SULTAN_OPTIMIZATIONS" -eq 0]; then
+    echo "N" > $LYB_TASK/parameters/lyb_sultan_pid
+    echo "N" > $LYB_TASK/parameters/lyb_sultan_pid_shrink
 fi
