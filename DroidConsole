@@ -136,7 +136,9 @@ main() {
             leave
             ;;
         *)
-            echo "wrong"
+            red
+            echo "Invalid input!"
+            reset
             ;;
     esac
 }
