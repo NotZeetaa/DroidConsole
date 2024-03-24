@@ -62,6 +62,59 @@ gpu_throttling() {
     esac
 }
 
+gpu_power_level() {
+    clear
+    red
+    animation_title
+    echo "********************************"
+    animation_title
+    echo "      × GPU power level ×      "
+    animation_title
+    echo "********************************"
+    green
+    space
+    animation
+    echo "1 - Set max GPU power level"
+    animation
+    echo "2 - Set min GPU power level"
+    animation
+    echo "3 - Go back"
+    animation
+    echo "4 - Main"
+    animation
+    echo "5 - Exit"
+    reset
+    space
+    echo "Your input: "
+    read gpu_power_level_input
+    case $gpu_power_level_input in
+        1)
+            echo "0" > $KGSL/default_pwrlevel
+            sed -i '/^GPU_POWER_LEVEL=/c\GPU_POWER_LEVEL="1"' $CONFIG
+            finish
+            ;;
+        2)
+            echo "$MIN_GPU_POWER_LEVEL" > $KGSL/default_pwrlevel
+            sed -i '/^GPU_POWER_LEVEL=/c\GPU_POWER_LEVEL="0"' $CONFIG
+            finish
+            ;;
+        3)
+            gpu
+            ;;
+        4)
+            main
+            ;;
+        5)
+            leave
+            ;;
+        *)
+            red
+            echo "Invalid input!"
+            reset
+            ;;
+    esac
+}
+
 gpu() {
     clear
     red
@@ -76,9 +129,11 @@ gpu() {
     animation
     echo "1 - GPU Throttling"
     animation
-    echo "2 - Main"
+    echo "2 - GPU power level"
     animation
-    echo "3 - Exit"
+    echo "3 - Main"
+    animation
+    echo "4 - Exit"
     reset
     space
     echo "Your input: "
@@ -88,9 +143,12 @@ gpu() {
             gpu_throttling
             ;;
         2)
-            main
+            gpu_power_level
             ;;
         3)
+            main
+            ;;
+        4)
             leave
             ;;
         *)

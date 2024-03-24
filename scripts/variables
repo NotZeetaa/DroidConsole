@@ -8,6 +8,7 @@ KGSL=/sys/class/kgsl/kgsl-3d0/
 WINDOW=/data/system/users/0/settings_secure.xml
 SWP=/proc/sys/vm/swappiness
 PWR=/sys/module/workqueue/parameters/power_efficient
+MIN_GPU_POWER_LEVEL=$(cat /sys/class/kgsl/kgsl-3d0/min_pwrlevel)
 
 red() {
     echo -en "\e[31m"
