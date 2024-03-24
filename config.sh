@@ -10,6 +10,7 @@ IOWAIT_BOOST=
 RAM_SWAP=
 POWER_EFFICIENT=
 GPU_POWER_LEVEL=
+GPU_POWER_MANAGEMENT=
 
 if [ "$GPU_THROTTLING" -eq 1 ]; then
     echo "1" > $KGSL/throttling
@@ -64,4 +65,16 @@ if [ "$GPU_POWER_LEVEL" -eq 1 ]; then
     echo "0" > $KGSL/default_pwrlevel
 elif [ "$GPU_POWER_LEVEL" -eq 0]; then
     echo "$MIN_GPU_POWER_LEVEL" > $KGSL/default_pwrlevel
+fi
+
+if [ "$GPU_POWER_MANAGEMENT" -eq 1 ]; then
+    echo "1" > $KGSL/force_bus_on
+    echo "1" > $KGSL/force_clk_on
+    echo "1" > $KGSL/force_no_nap
+    echo "1" > $KGSL/force_rail_on
+elif [ "$GPU_POWER_MANAGEMENT" -eq 0]; then
+    echo "0" > $KGSL/force_bus_on
+    echo "0" > $KGSL/force_clk_on
+    echo "0" > $KGSL/force_no_nap
+    echo "0" > $KGSL/force_rail_on
 fi

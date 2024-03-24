@@ -115,6 +115,65 @@ gpu_power_level() {
     esac
 }
 
+gpu_power_management() {
+    clear
+    red
+    animation_title
+    echo "********************************"
+    animation_title
+    echo "      × GPU Power Management Optimization ×      "
+    animation_title
+    echo "********************************"
+    green
+    space
+    animation
+    echo "1 - Optimize for performance (This may increase power usage)"
+    animation
+    echo "2 - Optimize for battery"
+    animation
+    echo "3 - Go back"
+    animation
+    echo "4 - Main"
+    animation
+    echo "5 - Exit"
+    reset
+    space
+    echo "Your input: "
+    read gpu_power_management_input
+    case $gpu_power_management_input in
+        1)
+            echo "1" > $KGSL/force_bus_on
+            echo "1" > $KGSL/force_clk_on
+            echo "1" > $KGSL/force_no_nap
+            echo "1" > $KGSL/force_rail_on
+            sed -i '/^GPU_POWER_MANAGEMENT=/c\GPU_POWER_MANAGEMENT="1"' $CONFIG
+            finish
+            ;;
+        2)
+            echo "0" > $KGSL/force_bus_on
+            echo "0" > $KGSL/force_clk_on
+            echo "0" > $KGSL/force_no_nap
+            echo "0" > $KGSL/force_rail_on
+            sed -i '/^GPU_POWER_MANAGEMENT=/c\GPU_POWER_MANAGEMENT="0"' $CONFIG
+            finish
+            ;;
+        3)
+            gpu
+            ;;
+        4)
+            main
+            ;;
+        5)
+            leave
+            ;;
+        *)
+            red
+            echo "Invalid input!"
+            reset
+            ;;
+    esac
+}
+
 gpu() {
     clear
     red
@@ -131,9 +190,11 @@ gpu() {
     animation
     echo "2 - GPU power level"
     animation
-    echo "3 - Main"
+    echo "3 - GPU power management optimization"
     animation
-    echo "4 - Exit"
+    echo "4 - Main"
+    animation
+    echo "5 - Exit"
     reset
     space
     echo "Your input: "
@@ -146,9 +207,12 @@ gpu() {
             gpu_power_level
             ;;
         3)
-            main
+            gpu_power_management
             ;;
         4)
+            main
+            ;;
+        5)
             leave
             ;;
         *)
