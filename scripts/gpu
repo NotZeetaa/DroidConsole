@@ -119,11 +119,11 @@ gpu_power_management() {
     clear
     red
     animation_title
-    echo "********************************"
+    echo "*************************************************"
     animation_title
     echo "      × GPU Power Management Optimization ×      "
     animation_title
-    echo "********************************"
+    echo "*************************************************"
     green
     space
     animation
