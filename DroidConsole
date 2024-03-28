@@ -1,6 +1,6 @@
 #!/system/bin/sh
 # Author: NotZeetaa
-# Version: BETA 2
+# Version: BETA 3
 
 # Call variables script
 . /data/adb/modules/DroidConsole/system/bin/variables

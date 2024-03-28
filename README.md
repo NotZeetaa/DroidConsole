@@ -13,6 +13,9 @@ An Android terminal ToolBox.
 - Power efficient
 - IO wait boost
 - Schedutil rate limits from Pixel 3
+- Sultan optimizations
+- GPU power level
+- GPU power management optimization
 ```
 
 
