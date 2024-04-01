@@ -54,6 +54,7 @@ main() {
 finish() {
     clear
     pink
+    config
     echo "Applying it..."
     sleep 1.5
     clear

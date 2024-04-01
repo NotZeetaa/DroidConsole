@@ -3,4 +3,4 @@ set -o standalone
 
 MODDIR=${0%/*}
 
-$MODDIR/config.sh > /dev/null
+config > /dev/null

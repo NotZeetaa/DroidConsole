@@ -36,12 +36,10 @@ gpu_throttling() {
     read gpu_throttling_input
     case $gpu_throttling_input in
         1)
-            echo "0" > $KGSL/throttling
             sed -i '/^GPU_THROTTLING=/c\GPU_THROTTLING="0"' $CONFIG
             finish
             ;;
         2)
-            echo "1" > $KGSL/throttling
             sed -i '/^GPU_THROTTLING=/c\GPU_THROTTLING="1"' $CONFIG
             finish
             ;;
@@ -89,12 +87,10 @@ gpu_power_level() {
     read gpu_power_level_input
     case $gpu_power_level_input in
         1)
-            echo "0" > $KGSL/default_pwrlevel
             sed -i '/^GPU_POWER_LEVEL=/c\GPU_POWER_LEVEL="1"' $CONFIG
             finish
             ;;
         2)
-            echo "$MIN_GPU_POWER_LEVEL" > $KGSL/default_pwrlevel
             sed -i '/^GPU_POWER_LEVEL=/c\GPU_POWER_LEVEL="0"' $CONFIG
             finish
             ;;
@@ -142,18 +138,10 @@ gpu_power_management() {
     read gpu_power_management_input
     case $gpu_power_management_input in
         1)
-            echo "1" > $KGSL/force_bus_on
-            echo "1" > $KGSL/force_clk_on
-            echo "1" > $KGSL/force_no_nap
-            echo "1" > $KGSL/force_rail_on
             sed -i '/^GPU_POWER_MANAGEMENT=/c\GPU_POWER_MANAGEMENT="1"' $CONFIG
             finish
             ;;
         2)
-            echo "0" > $KGSL/force_bus_on
-            echo "0" > $KGSL/force_clk_on
-            echo "0" > $KGSL/force_no_nap
-            echo "0" > $KGSL/force_rail_on
             sed -i '/^GPU_POWER_MANAGEMENT=/c\GPU_POWER_MANAGEMENT="0"' $CONFIG
             finish
             ;;

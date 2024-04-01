@@ -28,7 +28,6 @@ ram_swappiness() {
     read ram_input
     case $ram_input in
         1)
-            echo "100" > $SWP
             sed -i '/^RAM_SWAP=/c\RAM_SWAP="1"' $CONFIG
             finish
             ;;

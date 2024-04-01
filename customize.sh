@@ -8,6 +8,7 @@ set -x
  abort "- Unsupported API version: $API"
 
 mkdir -p $MODPATH/system/bin
+mv -f $MODPATH/config $MODPATH/system/bin/config
 mv -f $MODPATH/DroidConsole $MODPATH/system/bin/DroidConsole
 mv -f $MODPATH/scripts/cpu $MODPATH/system/bin/cpu
 mv -f $MODPATH/scripts/ram $MODPATH/system/bin/ram
@@ -29,6 +30,7 @@ find $MODPATH/* -maxdepth 0 \
 # Settings dir and file permission
 ui_print "  Settings permissions"
 set_perm_recursive $MODPATH 0 0 0755 0755
+set_perm $MODPATH/system/bin/config 0 2000 0755
 set_perm $MODPATH/system/bin/DroidConsole 0 2000 0755
 set_perm $MODPATH/system/bin/cpu 0 2000 0755
 set_perm $MODPATH/system/bin/ram 0 2000 0755

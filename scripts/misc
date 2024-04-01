@@ -84,13 +84,11 @@ power_efficient() {
     read input
     case $input in
         1)
-            echo "1" > $PWR
             sed -i '/^POWER_EFFICIENT=/c\POWER_EFFICIENT="1"' $CONFIG
             finish
             misc
             ;;
         2)
-            echo "0" > $PWR
             sed -i '/^POWER_EFFICIENT=/c\POWER_EFFICIENT="0"' $CONFIG
             finish
             misc
@@ -148,15 +146,11 @@ sultan_optimizations() {
         read input
         case $input in
             1)
-                echo "Y" > $LYB_TASK/parameters/lyb_sultan_pid
-                echo "Y" > $LYB_TASK/parameters/lyb_sultan_pid_shrink
                 sed -i '/^SULTAN_OPTIMIZATIONS=/c\SULTAN_OPTIMIZATIONS="1"' $CONFIG
                 finish
                 misc
                 ;;
             2)
-                echo "N" > $LYB_TASK/parameters/lyb_sultan_pid
-                echo "N" > $LYB_TASK/parameters/lyb_sultan_pid_shrink
                 sed -i '/^SULTAN_OPTIMIZATIONS=/c\SULTAN_OPTIMIZATIONS="0"' $CONFIG
                 finish
                 misc
