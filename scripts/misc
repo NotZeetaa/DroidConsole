@@ -175,6 +175,49 @@ sultan_optimizations() {
     fi
 }
 
+battery_health() {
+    clear
+    red
+    animation_title
+    echo "*****************************"
+    animation_title
+    echo "      × Battery Health ×      "
+    animation_title
+    echo "*****************************"
+    reset
+    space
+    animation
+    echo "Battery health: $BATTERY_HEALTH%"
+    green
+    space
+    animation
+    echo "1 - Go back"
+    animation
+    echo "2 - Main"
+    animation
+    echo "3 - Exit"
+    reset
+    space
+    echo "Your input: "
+    read input
+    case $input in
+        1)
+            misc
+            ;;
+        2)
+            main
+            ;;
+        3)
+            leave
+            ;;
+        *)
+            red
+            echo "Invalid input!"
+            reset
+            ;;
+    esac
+}
+
 misc() {
     clear
     red
@@ -193,9 +236,11 @@ misc() {
     animation
     echo "3 - Sultan Optimizations"
     animation
-    echo "4 - Main"
+    echo "4 - Check Battery Health"
     animation
-    echo "5 - Exit"
+    echo "5 - Main"
+    animation
+    echo "6 - Exit"
     reset
     space
     echo "Your input: "
@@ -211,9 +256,12 @@ misc() {
             sultan_optimizations
             ;;
         4)
-            main
+            battery_health
             ;;
         5)
+            main
+            ;;
+        6)
             leave
             ;;
         *)
