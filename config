@@ -53,7 +53,7 @@ elif [ "$IOWAIT_BOOST" -eq 0 ]; then
 fi
 
 if [ "$RAM_SWAP" -eq 1 ]; then
-    echo "100" > $SWP
+    echo "60" > $SWP
 fi
 
 if [ "$POWER_EFFICIENT" -eq 1 ]; then
