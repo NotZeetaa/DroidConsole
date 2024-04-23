@@ -2,8 +2,10 @@
 
 # Call variables script
 . /data/adb/modules/DroidConsole/system/bin/variables
+. /data/adb/modules/DroidConsole/system/bin/restore
 
 # Variables
+RESTORE=
 GPU_THROTTLING=
 CPU_RATELIMITS=
 IOWAIT_BOOST=
@@ -12,6 +14,16 @@ POWER_EFFICIENT=
 GPU_POWER_LEVEL=
 GPU_POWER_MANAGEMENT=
 SULTAN_OPTIMIZATIONS=
+
+if [ "$RESTORE" -eq 1 ]; then
+    echo "$BCK_RAM_SWAPPINESS" > $SWP
+    echo "$BCK_GPU_THROTTLING" > $KGSL/throttling
+    echo "$BCK_GPU_FORCE1" > $KGSL/force_bus_on
+    echo "$BCK_GPU_FORCE2" > $KGSL/force_clk_on
+    echo "$BCK_GPU_FORCE3" > $KGSL/force_no_nap
+    echo "$BCK_GPU_FORCE4" > $KGSL/force_rail_on
+    echo "$BCK_GPU_PWR" > $KGSL/default_pwrlevel
+fi
 
 if [ "$GPU_THROTTLING" -eq 1 ]; then
     echo "1" > $KGSL/throttling

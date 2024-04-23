@@ -1,0 +1,13 @@
+#!/system/bin/sh
+
+# Call variables script
+. /data/adb/modules/DroidConsole/system/bin/variables
+
+BCK_RAM_SWAPPINESS=$(cat /proc/sys/vm/swappiness)
+BCK_GPU_THROTTLING=$(cat /sys/class/kgsl/kgsl-3d0/throttling)
+BCK_GPU_FORCE1=$(cat /sys/class/kgsl/kgsl-3d0/force_bus_on)
+BCK_GPU_FORCE2=$(cat /sys/class/kgsl/kgsl-3d0/force_clk_on)
+BCK_GPU_FORCE3=$(cat /sys/class/kgsl/kgsl-3d0/force_no_nap)
+BCK_GPU_FORCE4=$(cat /sys/class/kgsl/kgsl-3d0/force_rail_on)
+BCK_GPU_PWR=$(cat /sys/class/kgsl/kgsl-3d0/default_pwrlevel)
+    

@@ -26,13 +26,15 @@ main() {
     animation
     echo "4 - Miscellaneous"
     animation
-    echo "5 - Github"
+    echo "5 - Restore"
     animation
-    echo "6 - About"
+    echo "6 - Github"
     animation
-    echo "7 - Donate"
+    echo "7 - About"
     animation
-    echo "8 - Exit"
+    echo "8 - Donate"
+    animation
+    echo "9 - Exit"
     space
     reset
     echo "Your input: "
@@ -52,6 +54,56 @@ main() {
             misc
             ;;
         5)
+            clear
+            red
+            animation_title
+            echo "*****************************"
+            animation_title
+            echo "      × Restore ×      "
+            animation_title
+            echo "*****************************"
+            space
+            red
+            echo " This will restore all changes that DroidConsole made"
+            space
+            echo " Wanna restore all changes?"
+            green
+            space
+            animation
+            echo "1 - Yes"
+            animation
+            echo "2 - No"
+            animation
+            echo "3 - Main"
+            animation
+            echo "4 - Exit"
+            space
+            reset
+            echo "Your input: "
+            read input
+            case $input in
+                1)
+                    sed -i '/^RESTORE=/c\RESTORE="1"' $CONFIG
+                    finish
+                    ;;
+                2)
+                    sed -i '/^RESTORE=/c\RESTORE="0"' $CONFIG
+                    main
+                    ;;
+                3)
+                    main
+                    ;;
+                4)
+                    leave
+                    ;;
+                *)
+                    red
+                    echo "Invalid input!"
+                    reset
+                    ;;
+            esac
+            ;;
+        6)
             clear
             blue
             animation
@@ -76,7 +128,7 @@ main() {
             fi
             reset
             ;;
-        6)
+        7)
             clear
             green
             echo "--------------------------------------------------------------"
@@ -128,11 +180,11 @@ main() {
                 leave
             fi
             ;;
-        7)
+        8)
             am start -a android.intent.action.VIEW -d "http://notzeetaa.github.io/Donate-NotZeetaa"
             main
             ;;
-        8)
+        9)
             leave
             ;;
         *)
