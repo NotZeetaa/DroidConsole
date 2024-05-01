@@ -218,6 +218,58 @@ battery_health() {
     esac
 }
 
+dexopt_optimization() {
+    clear
+    red
+    animation_title
+    echo "***********************************"
+    animation_title
+    echo "      × Dexopt Optimization ×      "
+    animation_title
+    echo "***********************************"
+    reset
+    space
+    animation
+    echo "This might take some minutes depending on your phone and apps installed on your system"
+    green
+    space
+    animation
+    echo "1 - Optimize"
+    animation
+    echo "2 - Go back"
+    animation
+    echo "3 - Main"
+    animation
+    echo "4 - Exit"
+    reset
+    space
+    echo "Your input: "
+    read input
+    case $input in
+        1)
+            clear
+            yellow
+            echo "Optimizing... (This might take some minutes)"
+            su -c 'cmd package bg-dexopt-job'
+            finish
+            ;;
+        2)
+            misc
+            ;;
+        3)
+            main
+            ;;
+        4)
+            leave
+            ;;
+        *)
+            red
+            echo "Invalid input!"
+            reset
+            ;;
+    esac
+}
+
 misc() {
     clear
     red
@@ -238,9 +290,11 @@ misc() {
     animation
     echo "4 - Check Battery Health"
     animation
-    echo "5 - Main"
+    echo "5 - Dexopt Optimization"
     animation
-    echo "6 - Exit"
+    echo "6 - Main"
+    animation
+    echo "7 - Exit"
     reset
     space
     echo "Your input: "
@@ -259,9 +313,12 @@ misc() {
             battery_health
             ;;
         5)
-            main
+            dexopt_optimization
             ;;
         6)
+            main
+            ;;
+        7)
             leave
             ;;
         *)
