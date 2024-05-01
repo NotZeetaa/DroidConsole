@@ -25,8 +25,8 @@ ram_swappiness() {
     reset
     space
     echo "Your input: "
-    read ram_input
-    case $ram_input in
+    read input
+    case $input in
         1)
             sed -i '/^RAM_SWAP=/c\RAM_SWAP="1"' $CONFIG
             finish
@@ -68,8 +68,8 @@ ram() {
     reset
     space
     echo "Your input: "
-    read ram_input
-    case $ram_input in
+    read input
+    case $input in
         1)
             ram_swappiness
             ;;

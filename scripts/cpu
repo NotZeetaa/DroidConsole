@@ -78,8 +78,8 @@ cpu() {
     reset
     space
     echo "Your input: "
-    read cpu_input
-    case $cpu_input in
+    read input
+    case $input in
         1)
             sed -i '/^CPU_RATELIMITS=/c\CPU_RATELIMITS="1"' $CONFIG
             finish

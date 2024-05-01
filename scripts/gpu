@@ -33,8 +33,8 @@ gpu_throttling() {
     reset
     space
     echo "Your input: "
-    read gpu_throttling_input
-    case $gpu_throttling_input in
+    read input
+    case $input in
         1)
             sed -i '/^GPU_THROTTLING=/c\GPU_THROTTLING="0"' $CONFIG
             finish
@@ -84,8 +84,8 @@ gpu_power_level() {
     reset
     space
     echo "Your input: "
-    read gpu_power_level_input
-    case $gpu_power_level_input in
+    read input
+    case $input in
         1)
             sed -i '/^GPU_POWER_LEVEL=/c\GPU_POWER_LEVEL="1"' $CONFIG
             finish
@@ -135,8 +135,8 @@ gpu_power_management() {
     reset
     space
     echo "Your input: "
-    read gpu_power_management_input
-    case $gpu_power_management_input in
+    read input
+    case $input in
         1)
             sed -i '/^GPU_POWER_MANAGEMENT=/c\GPU_POWER_MANAGEMENT="1"' $CONFIG
             finish
@@ -186,8 +186,8 @@ gpu() {
     reset
     space
     echo "Your input: "
-    read gpu_input
-    case $gpu_input in
+    read input
+    case $input in
         1)
             gpu_throttling
             ;;
