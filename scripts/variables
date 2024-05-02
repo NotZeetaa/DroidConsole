@@ -46,11 +46,11 @@ space() {
 }
 
 animation_title() {
-    sleep 0.2
+    sleep 0.1
 }
 
 animation() {
-    sleep 0.1
+    sleep 0.05
 }
 
 main() {
