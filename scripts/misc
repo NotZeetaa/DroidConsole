@@ -270,6 +270,55 @@ dexopt_optimization() {
     esac
 }
 
+fix_rom_glitches() {
+    clear
+    red
+    animation_title
+    echo "*****************************"
+    animation_title
+    echo "      × Fix ROM Glitches ×      "
+    animation_title
+    echo "*****************************"
+    reset
+    space
+    animation
+    echo "This is only needed when u dirty flash your ROM and you see some string text out of context"
+    green
+    space
+    animation
+    echo "1 - Fix ROM Glitches"
+    animation
+    echo "2 - Go back"
+    animation
+    echo "3 - Main"
+    animation
+    echo "4 - Exit"
+    reset
+    space
+    echo "Your input: "
+    read input
+    case $input in
+        1)
+            su -c 'rm -rf /data/system/package_cache/'
+            finish
+            ;;
+        2)
+            misc
+            ;;
+        3)
+            main
+            ;;
+        4)
+            leave
+            ;;
+        *)
+            red
+            echo "Invalid input!"
+            reset
+            ;;
+    esac
+}
+
 misc() {
     clear
     red
@@ -292,9 +341,11 @@ misc() {
     animation
     echo "5 - Dexopt Optimization"
     animation
-    echo "6 - Main"
+    echo "6 - Fix ROM Glitches"
     animation
-    echo "7 - Exit"
+    echo "7 - Main"
+    animation
+    echo "8 - Exit"
     reset
     space
     echo "Your input: "
@@ -316,9 +367,12 @@ misc() {
             dexopt_optimization
             ;;
         6)
-            main
+            fix_rom_glitches
             ;;
         7)
+            main
+            ;;
+        8)
             leave
             ;;
         *)
