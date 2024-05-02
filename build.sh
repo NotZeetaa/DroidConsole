@@ -7,7 +7,7 @@ curl -F document="@$1" "https://api.telegram.org/bot${token}/sendDocument" \
      -F "parse_mode=html"
 }
 random_number=$((1 + RANDOM % 200))
-zip_name=DroidConsole-BETA-3-${random_number}
+zip_name=DroidConsole-BETA-4-${random_number}
 echo ""
 rm -rf ./*.zip
 zip -r9 "$zip_name.zip" . -x "*build*" "*.bak*" "*.git*"
