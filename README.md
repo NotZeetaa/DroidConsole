@@ -16,6 +16,10 @@ An Android terminal ToolBox.
 - Sultan optimizations
 - GPU power level
 - GPU power management optimization
+- Restore option (Doesn't work properly yet)
+- Calculates battery health
+- Dexopt optimization
+- Fix some ROM glitches
 ```
 
 
