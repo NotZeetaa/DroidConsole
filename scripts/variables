@@ -16,6 +16,14 @@ DIFFERENCE=$(( $CHARGE_FULL_DESIGN - $CHARGE_FULL ))
 CAPACITY=$(( $CHARGE_FULL / 1000 ))
 CAPACITY_DESIGN=$(( $CHARGE_FULL_DESIGN / 1000 ))
 BATTERY_HEALTH=$(( 100 * $CAPACITY / $CAPACITY_DESIGN ))
+spin[0]="-"
+spin[1]="\\"
+spin[2]="|"
+spin[3]="/"
+spin[4]="*"
+spin[5]="#"
+spin[6]="!"
+spin[7]="/"
 
 red() {
     echo -en "\e[31m"
@@ -61,8 +69,12 @@ finish() {
     clear
     pink
     config
-    echo "Applying it..."
-    sleep 1.5
+    echo -ne "Applying it... ${spin[0]}"
+    for i in "${spin[@]}"
+    do
+    echo -ne "\b$i"
+    sleep 0.18
+    done
     clear
     yellow
     animation
@@ -73,8 +85,12 @@ finish() {
     echo "**********************"
     space
     blue
-    echo "Redirecting..."
-    sleep 1
+    echo -ne "Redirecting... ${spin[0]}"
+    for i in "${spin[@]}"
+    do
+    echo -ne "\b$i"
+    sleep 0.18
+    done
     main
 }
 
