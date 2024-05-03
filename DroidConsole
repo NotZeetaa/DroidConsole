@@ -72,11 +72,9 @@ main() {
             animation
             echo "1 - Yes"
             animation
-            echo "2 - No"
+            echo "2 - Main"
             animation
-            echo "3 - Main"
-            animation
-            echo "4 - Exit"
+            echo "3 - Exit"
             space
             reset
             echo "Your input: "
@@ -87,13 +85,9 @@ main() {
                     finish
                     ;;
                 2)
-                    sed -i '/^RESTORE=/c\RESTORE="0"' $CONFIG
                     main
                     ;;
                 3)
-                    main
-                    ;;
-                4)
                     leave
                     ;;
                 *)

@@ -2,6 +2,7 @@
 
 # Variables
 CONFIG=/data/adb/modules/DroidConsole/system/bin/config
+RESTORE_CONFIG=/data/adb/modules/DroidConsole/system/bin/restore
 S2=/sys/devices/system/cpu/cpufreq/schedutil
 SC=/sys/devices/system/cpu/cpu0/cpufreq/schedutil
 KGSL=/sys/class/kgsl/kgsl-3d0/
@@ -63,6 +64,19 @@ animation() {
 
 main() {
     DroidConsole
+}
+
+droid() {
+	# Make sure node exist and we have rw access
+	if [ -e $1 -a -w $1 ]; then
+	# Backup current node value only if its not backed up yet
+	if ! grep -qo $1 $RESTORE_CONFIG; then
+	B=`cat $1`
+	echo write $1 $B >> $RESTORE_CONFIG
+	fi
+	# Finally write new value
+	echo $2 > $1
+	fi
 }
 
 finish() {

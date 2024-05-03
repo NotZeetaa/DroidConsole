@@ -2,10 +2,9 @@
 
 # Call variables script
 . /data/adb/modules/DroidConsole/system/bin/variables
-. /data/adb/modules/DroidConsole/system/bin/restore
 
 # Variables
-RESTORE=
+RESTORE="0"
 GPU_THROTTLING=
 CPU_RATELIMITS=
 IOWAIT_BOOST=
@@ -15,36 +14,29 @@ GPU_POWER_LEVEL=
 GPU_POWER_MANAGEMENT=
 SULTAN_OPTIMIZATIONS=
 
-if [ "$RESTORE" -eq 1 ]; then
-    echo "$BCK_RAM_SWAPPINESS" > $SWP
-    echo "$BCK_GPU_THROTTLING" > $KGSL/throttling
-    echo "$BCK_GPU_FORCE1" > $KGSL/force_bus_on
-    echo "$BCK_GPU_FORCE2" > $KGSL/force_clk_on
-    echo "$BCK_GPU_FORCE3" > $KGSL/force_no_nap
-    echo "$BCK_GPU_FORCE4" > $KGSL/force_rail_on
-    echo "$BCK_GPU_PWR" > $KGSL/default_pwrlevel
-fi
+# Avoid conflict & restore override
+[ "$RESTORE" ] && if [ "$RESTORE" -eq 0 ]; then
 
-if [ "$GPU_THROTTLING" -eq 1 ]; then
+[ "$GPU_THROTTLING" ] && if [ "$GPU_THROTTLING" -eq 1 ]; then
     echo "1" > $KGSL/throttling
 elif [ "$GPU_THROTTLING" -eq 0 ]; then
     echo "0" > $KGSL/throttling
 fi
 
-if [ "$CPU_RATELIMITS" -eq 1 ]; then
+[ "$CPU_RATELIMITS" ] && if [ "$CPU_RATELIMITS" -eq 1 ]; then
     if [ -d $S2 ]; then
-        echo "500" > $S2/up_rate_limit_us
-        echo "20000" > $S2/down_rate_limit_us
+        droid $S2/up_rate_limit_us "500"
+        droid $S2/down_rate_limit_us "20000"
     elif [ -e $SC ]; then
         for cpu in /sys/devices/system/cpu/*/cpufreq/schedutil
         do
-            echo "500" > "${cpu}/up_rate_limit_us"
-            echo "20000" > "${cpu}/down_rate_limit_us"
+            droid "${cpu}/up_rate_limit_us" "500"
+            droid "${cpu}/down_rate_limit_us" "20000"
         done
     fi
 fi
 
-if [ "$IOWAIT_BOOST" -eq 1 ]; then
+[ "$IOWAIT_BOOST" ] && if [ "$IOWAIT_BOOST" -eq 1 ]; then
     if [ -d $S2 ]; then
         echo "1" > $S2/iowait_boost_enable
     elif [ -e $SC ]; then
@@ -64,38 +56,42 @@ elif [ "$IOWAIT_BOOST" -eq 0 ]; then
     fi
 fi
 
-if [ "$RAM_SWAP" -eq 1 ]; then
-    echo "60" > $SWP
+[ "$RAM_SWAP" ] && if [ "$RAM_SWAP" -eq 1 ]; then
+    droid $SWP 60
 fi
 
-if [ "$POWER_EFFICIENT" -eq 1 ]; then
+[ "$POWER_EFFICIENT" ] && if [ "$POWER_EFFICIENT" -eq 1 ]; then
     echo "1" > $PWR
 elif [ "$POWER_EFFICIENT" -eq 0 ]; then
     echo "0" > $PWR
 fi
 
-if [ "$GPU_POWER_LEVEL" -eq 1 ]; then
+[ "$GPU_POWER_LEVEL" ] && if [ "$GPU_POWER_LEVEL" -eq 1 ]; then
     echo "0" > $KGSL/default_pwrlevel
-elif [ "$GPU_POWER_LEVEL" -eq 0]; then
+elif [ "$GPU_POWER_LEVEL" -eq 0 ]; then
     echo "$MIN_GPU_POWER_LEVEL" > $KGSL/default_pwrlevel
 fi
 
-if [ "$GPU_POWER_MANAGEMENT" -eq 1 ]; then
+[ "$GPU_POWER_MANAGEMENT" ] && if [ "$GPU_POWER_MANAGEMENT" -eq 1 ]; then
     echo "1" > $KGSL/force_bus_on
     echo "1" > $KGSL/force_clk_on
     echo "1" > $KGSL/force_no_nap
     echo "1" > $KGSL/force_rail_on
-elif [ "$GPU_POWER_MANAGEMENT" -eq 0]; then
+elif [ "$GPU_POWER_MANAGEMENT" -eq 0 ]; then
     echo "0" > $KGSL/force_bus_on
     echo "0" > $KGSL/force_clk_on
     echo "0" > $KGSL/force_no_nap
     echo "0" > $KGSL/force_rail_on
 fi
 
-if [ "$SULTAN_OPTIMIZATIONS" -eq 1 ]; then
+[ "$SULTAN_OPTIMIZATIONS" ] && if [ "$SULTAN_OPTIMIZATIONS" -eq 1 ]; then
     echo "Y" > $LYB_TASK/parameters/lyb_sultan_pid
     echo "Y" > $LYB_TASK/parameters/lyb_sultan_pid_shrink
-elif [ "$SULTAN_OPTIMIZATIONS" -eq 0]; then
+elif [ "$SULTAN_OPTIMIZATIONS" -eq 0 ]; then
     echo "N" > $LYB_TASK/parameters/lyb_sultan_pid
     echo "N" > $LYB_TASK/parameters/lyb_sultan_pid_shrink
+fi
+
+elif [ "$RESTORE" -eq 1 ]; then
+restore
 fi
