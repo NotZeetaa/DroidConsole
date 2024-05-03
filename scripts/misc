@@ -247,11 +247,7 @@ dexopt_optimization() {
     read input
     case $input in
         1)
-            clear
-            yellow
-            echo "Optimizing... (This might take some minutes)"
-            su -c 'cmd package bg-dexopt-job'
-            finish
+            dexopt_lvl
             ;;
         2)
             misc
@@ -260,6 +256,69 @@ dexopt_optimization() {
             main
             ;;
         4)
+            leave
+            ;;
+        *)
+            red
+            echo "Invalid input!"
+            reset
+            ;;
+    esac
+}
+
+dexopt_lvl() {
+    clear
+    red
+    animation_title
+    echo "***********************************"
+    animation_title
+    echo "      × Select Optimization Level ×      "
+    animation_title
+    echo "***********************************"
+    reset
+    space
+    animation
+    echo "This will take time dont close this app"
+    green
+    space
+    animation
+    echo "1 - Extreme"
+    animation
+    echo "2 - Speed"
+    animation
+    echo "3 - Go back"
+    animation
+    echo "4 - Main"
+    animation
+    echo "5 - Exit"
+    reset
+    space
+    echo "Your input: "
+    read input
+    case $input in
+        1)
+            clear
+            yellow
+            su -c 'pm compile -m everything -a -p PRIORITY_BOOT' | while IFS= read -r app; do
+            echo -ne "\rOptimizing: $app"
+            done
+            finish
+            ;;
+        2)
+            clear
+            yellow
+            su -c 'pm compile -m speed -a -p PRIORITY_BOOT' | while IFS= read -r app; do
+            echo -ne "\rOptimizing: $app"
+            done
+            finish
+            ;;
+        3)
+            dexopt_optimization
+            ;;
+        4)
+            main
+            ;;
+        5)
             leave
             ;;
         *)
