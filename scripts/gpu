@@ -36,11 +36,11 @@ gpu_throttling() {
     read input
     case $input in
         1)
-            sed -i '/^GPU_THROTTLING=/c\GPU_THROTTLING="0"' $CONFIG
+            resetprop -n droid.gpu_throttling 0 && sed -i '/droid.gpu_throttling=/s/.*/droid.gpu_throttling=0/' $DPROP
             finish
             ;;
         2)
-            sed -i '/^GPU_THROTTLING=/c\GPU_THROTTLING="1"' $CONFIG
+            resetprop -n droid.gpu_throttling 1 && sed -i '/droid.gpu_throttling=/s/.*/droid.gpu_throttling=1/' $DPROP
             finish
             ;;
         3)
@@ -87,11 +87,11 @@ gpu_power_level() {
     read input
     case $input in
         1)
-            sed -i '/^GPU_POWER_LEVEL=/c\GPU_POWER_LEVEL="1"' $CONFIG
+            resetprop -n droid.gpu_power_lvl 1 && sed -i '/droid.gpu_power_lvl=/s/.*/droid.gpu_power_lvl=1/' $DPROP
             finish
             ;;
         2)
-            sed -i '/^GPU_POWER_LEVEL=/c\GPU_POWER_LEVEL="0"' $CONFIG
+            resetprop -n droid.gpu_power_lvl 0 && sed -i '/droid.gpu_power_lvl=/s/.*/droid.gpu_power_lvl=0/' $DPROP
             finish
             ;;
         3)
@@ -138,11 +138,11 @@ gpu_power_management() {
     read input
     case $input in
         1)
-            sed -i '/^GPU_POWER_MANAGEMENT=/c\GPU_POWER_MANAGEMENT="1"' $CONFIG
+            resetprop -n droid.gpu_power_management 1 && sed -i '/droid.gpu_power_management=/s/.*/droid.gpu_power_management=1/' $DPROP
             finish
             ;;
         2)
-            sed -i '/^GPU_POWER_MANAGEMENT=/c\GPU_POWER_MANAGEMENT="0"' $CONFIG
+            resetprop -n droid.gpu_power_management 0 && sed -i '/droid.gpu_power_management=/s/.*/droid.gpu_power_management=0/' $DPROP
             finish
             ;;
         3)

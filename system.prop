@@ -1,0 +1,11 @@
+# DroidConsole props
+
+droid.restore=0
+droid.gpu_throttling=
+droid.cpu_ratelimits=
+droid.iowait_boost=
+droid.ram_swap=
+droid.power_efficient=
+droid.gpu_power_lvl=
+droid.gpu_power_management=
+droid.sultan_optimizations=

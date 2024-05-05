@@ -84,12 +84,12 @@ power_efficient() {
     read input
     case $input in
         1)
-            sed -i '/^POWER_EFFICIENT=/c\POWER_EFFICIENT="1"' $CONFIG
+            resetprop -n droid.power_efficient 1 && sed -i '/droid.power_efficient=/s/.*/droid.power_efficient=1/' $DPROP
             finish
             misc
             ;;
         2)
-            sed -i '/^POWER_EFFICIENT=/c\POWER_EFFICIENT="0"' $CONFIG
+            resetprop -n droid.power_efficient 0 && sed -i '/droid.power_efficient=/s/.*/droid.power_efficient=0/' $DPROP
             finish
             misc
             ;;
@@ -146,12 +146,12 @@ sultan_optimizations() {
         read input
         case $input in
             1)
-                sed -i '/^SULTAN_OPTIMIZATIONS=/c\SULTAN_OPTIMIZATIONS="1"' $CONFIG
+                resetprop -n droid.sultan_optimizations 1 && sed -i '/droid.sultan_optimizations=/s/.*/droid.sultan_optimizations=1/' $DPROP
                 finish
                 misc
                 ;;
             2)
-                sed -i '/^SULTAN_OPTIMIZATIONS=/c\SULTAN_OPTIMIZATIONS="0"' $CONFIG
+                resetprop -n droid.sultan_optimizations 0 && sed -i '/droid.sultan_optimizations=/s/.*/droid.sultan_optimizations=0/' $DPROP
                 finish
                 misc
                 ;;

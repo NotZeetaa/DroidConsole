@@ -28,7 +28,7 @@ ram_swappiness() {
     read input
     case $input in
         1)
-            sed -i '/^RAM_SWAP=/c\RAM_SWAP="1"' $CONFIG
+            resetprop -n droid.ram_swap 1 && sed -i '/droid.ram_swap=/s/.*/droid.ram_swap=1/' $DPROP
             finish
             ;;
         2)

@@ -30,12 +30,12 @@ cpu_iowait_boost() {
     read input
     case $input in
         1)
-            sed -i '/^IOWAIT_BOOST=/c\IOWAIT_BOOST="1"' $CONFIG
+            resetprop -n droid.iowait_boost 1 && sed -i '/droid.iowait_boost=/s/.*/droid.iowait_boost=1/' $DPROP
             finish
             cpu
             ;;
         2)
-            sed -i '/^IOWAIT_BOOST=/c\IOWAIT_BOOST="0"' $CONFIG
+            resetprop -n droid.iowait_boost 0 && sed -i '/droid.iowait_boost=/s/.*/droid.iowait_boost=0/' $DPROP
             finish
             cpu
             ;;
@@ -81,7 +81,7 @@ cpu() {
     read input
     case $input in
         1)
-            sed -i '/^CPU_RATELIMITS=/c\CPU_RATELIMITS="1"' $CONFIG
+            resetprop -n droid.cpu_ratelimits 1 && sed -i '/droid.cpu_ratelimits=/s/.*/droid.cpu_ratelimits=1/' $DPROP
             finish
             cpu
             ;;

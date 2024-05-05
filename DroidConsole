@@ -81,7 +81,7 @@ main() {
             read input
             case $input in
                 1)
-                    sed -i '/^RESTORE=/c\RESTORE="1"' $CONFIG
+                    resetprop -n droid.restore 1 && sed -i '/droid.restore=/s/.*/droid.restore=1/' $DPROP
                     finish
                     ;;
                 2)

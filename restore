@@ -5,11 +5,9 @@
 
 # The only variable that can't be stored on variable cuz it conflict with droid write function
 write() {
-	#if [ -e $1 -a -w $1 ]; then
 	echo $2 > $1
-	#fi
 }
 
 # Disable restore after executing
-sed -i '/^RESTORE=/c\RESTORE="0"' $CONFIG
+resetprop -n droid.restore 0 && sed -i '/droid.restore=/s/.*/droid.restore=0/' $DPROP
 

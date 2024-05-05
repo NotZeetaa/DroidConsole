@@ -23,6 +23,7 @@ find $MODPATH/* -maxdepth 0 \
 ! -name 'module.prop' \
 ! -name 'post-fs-data.sh' \
 ! -name 'service.sh' \
+! -name 'system.prop' \
 ! -name 'system' \
 ! -name 'config' \
 ! -name 'restore' \
