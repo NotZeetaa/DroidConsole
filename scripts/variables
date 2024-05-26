@@ -1,6 +1,7 @@
 #!/system/bin/sh
 
 # Variables
+VERSION=BETA-4
 CONFIG=/data/adb/modules/DroidConsole/system/bin/config
 RESTORE_CONFIG=/data/adb/modules/DroidConsole/system/bin/restore
 DPROP=/data/adb/modules/DroidConsole/system.prop
