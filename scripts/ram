@@ -3,58 +3,8 @@
 # Call variables script
 . /data/adb/modules/DroidConsole/system/bin/variables
 
-ram_swappiness() {
-    current_tweak=$(grep 'droid.ram_swap=' $DPROP | cut -d'=' -f2)
-    clear
-    red
-    animation_title
-    echo "********************************"
-    animation_title
-    echo "      × RAM swappiness ×      "
-    animation_title
-    echo "********************************"
-    green
-    space
-    animation
-    if [ "$current_tweak" = "1" ]; then
-        echo -n "1 - Tweak RAM swappiness "
-        current
-    else
-        echo "1 - Tweak RAM swappiness"
-    fi
-    animation
-    echo "2 - Go back"
-    animation
-    echo "3 - Main"
-    animation
-    echo "4 - Exit"
-    reset
-    space
-    echo "Your input: "
-    read input
-    case $input in
-        1)
-            resetprop -n droid.ram_swap 1 && sed -i '/droid.ram_swap=/s/.*/droid.ram_swap=1/' $DPROP
-            finish
-            ;;
-        2)
-            ram
-            ;;
-        3)
-            main
-            ;;
-        4)
-            leave
-            ;;
-        *)
-            red
-            echo "Invalid input!"
-            reset
-            ;;
-    esac
-}
-
 ram() {
+    current_tweak=$(grep 'droid.ram_swap=' $DPROP | cut -d'=' -f2)
     clear
     red
     animation_title
@@ -66,7 +16,12 @@ ram() {
     green
     space
     animation
-    echo "1 - Swappiness"
+    if [ "$current_tweak" = "1" ]; then
+        echo -n "1 - Tweak RAM swappiness "
+        current
+    else
+        echo "1 - Tweak RAM swappiness"
+    fi
     animation
     echo "2 - Main"
     animation
@@ -77,7 +32,8 @@ ram() {
     read input
     case $input in
         1)
-            ram_swappiness
+            resetprop -n droid.ram_swap 1 && sed -i '/droid.ram_swap=/s/.*/droid.ram_swap=1/' $DPROP
+            finish
             ;;
         2)
             main
