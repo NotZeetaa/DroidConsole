@@ -4,6 +4,7 @@
 . /data/adb/modules/DroidConsole/system/bin/variables
 
 cpu_iowait_boost() {
+    current_tweak=$(grep 'droid.iowait_boost=' $DPROP | cut -d'=' -f2)
     clear
     red
     animation_title
@@ -15,9 +16,19 @@ cpu_iowait_boost() {
     green
     space
     animation
-    echo "1 - Enable IO Wait Boost"
+    if [ "$current_tweak" = "1" ]; then
+        echo -n "1 - Enable IO Wait Boost "
+        current
+    else
+        echo "1 - Enable IO Wait Boost"
+    fi
     animation
-    echo "2 - Disable IO Wait Boost"
+    if [ "$current_tweak" = "0" ]; then
+        echo -n "2 - Disable IO Wait Boost "
+        current
+    else
+        echo "2 - Disable IO Wait Boost"
+    fi
     animation
     echo "3 - Go back"
     animation
@@ -57,6 +68,7 @@ cpu_iowait_boost() {
 }
 
 cpu() {
+    current_tweak=$(grep 'droid.cpu_ratelimits=' $DPROP | cut -d'=' -f2)
     clear
     red
     animation_title
@@ -68,7 +80,12 @@ cpu() {
     green
     space
     animation
-    echo "1 - Schedutil rate limits"
+    if [ "$current_tweak" = "1" ]; then
+        echo -n "1 - Schedutil rate limits "
+        current
+    else
+        echo "1 - Schedutil rate limits"
+    fi
     animation
     echo "2 - Iowait boost"
     animation

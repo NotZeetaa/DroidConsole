@@ -4,6 +4,7 @@
 . /data/adb/modules/DroidConsole/system/bin/variables
 
 ram_swappiness() {
+    current_tweak=$(grep 'droid.ram_swap=' $DPROP | cut -d'=' -f2)
     clear
     red
     animation_title
@@ -15,7 +16,12 @@ ram_swappiness() {
     green
     space
     animation
-    echo "1 - Tweak RAM swappiness"
+    if [ "$current_tweak" = "1" ]; then
+        echo -n "1 - Tweak RAM swappiness "
+        current
+    else
+        echo "1 - Tweak RAM swappiness"
+    fi
     animation
     echo "2 - Go back"
     animation

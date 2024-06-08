@@ -4,6 +4,7 @@
 . /data/adb/modules/DroidConsole/system/bin/variables
 
 gpu_throttling() {
+    current_tweak=$(grep 'droid.gpu_throttling=' $DPROP | cut -d'=' -f2)
     clear
     red
     animation_title
@@ -15,7 +16,12 @@ gpu_throttling() {
     green
     space
     animation
-    echo "1 - Turn off throttling"
+    if [ "$current_tweak" = "0" ]; then
+        echo -n "1 - Turn off throttling "
+        current
+    else
+        echo "1 - Turn off throttling"
+    fi
     red
     space
     animation
@@ -23,7 +29,12 @@ gpu_throttling() {
     green
     space
     animation
-    echo "2 - Turn on throttling"
+    if [ "$current_tweak" = "1" ]; then
+        echo -n "2 - Turn on throttling "
+        current
+    else
+        echo "2 - Turn on throttling"
+    fi
     animation
     echo "3 - Go back"
     animation
@@ -61,6 +72,7 @@ gpu_throttling() {
 }
 
 gpu_power_level() {
+    current_tweak=$(grep 'droid.gpu_power_lvl=' $DPROP | cut -d'=' -f2)
     clear
     red
     animation_title
@@ -72,9 +84,19 @@ gpu_power_level() {
     green
     space
     animation
-    echo "1 - Set max GPU power level"
+    if [ "$current_tweak" = "1" ]; then
+        echo -n "1 - Set max GPU power level "
+        current
+    else
+        echo "1 - Set max GPU power level"
+    fi
     animation
-    echo "2 - Set min GPU power level"
+    if [ "$current_tweak" = "0" ]; then
+        echo -n "2 - Set min GPU power level "
+        current
+    else
+        echo "2 - Set min GPU power level"
+    fi
     animation
     echo "3 - Go back"
     animation
@@ -112,6 +134,7 @@ gpu_power_level() {
 }
 
 gpu_power_management() {
+    current_tweak=$(grep 'droid.gpu_power_management=' $DPROP | cut -d'=' -f2)
     clear
     red
     animation_title
@@ -123,9 +146,19 @@ gpu_power_management() {
     green
     space
     animation
-    echo "1 - Optimize for performance (This may increase power usage)"
+    if [ "$current_tweak" = "1" ]; then
+        echo -n "1 - Optimize for performance (This may increase power usage) "
+        current
+    else
+        echo "1 - Optimize for performance (This may increase power usage)"
+    fi
     animation
-    echo "2 - Optimize for battery"
+    if [ "$current_tweak" = "0" ]; then
+        echo -n "2 - Optimize for battery "
+        current
+    else
+        echo "2 - Optimize for battery"
+    fi
     animation
     echo "3 - Go back"
     animation

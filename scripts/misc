@@ -57,6 +57,7 @@ window_feature() {
 }
 
 power_efficient() {
+    current_tweak=$(grep 'droid.power_efficient=' $DPROP | cut -d'=' -f2)
     clear
     red
     animation_title
@@ -68,9 +69,19 @@ power_efficient() {
     green
     space
     animation
-    echo "1 - Enable Power Efficient"
+    if [ "$current_tweak" = "1" ]; then
+        echo -n "1 - Enable Power Efficient "
+        current
+    else
+        echo "1 - Enable Power Efficient"
+    fi
     animation
-    echo "2 - Disable Power Efficient"
+    if [ "$current_tweak" = "0" ]; then
+        echo -n "2 - Disable Power Efficient "
+        current
+    else
+        echo "2 - Disable Power Efficient"
+    fi
     animation
     echo "3 - Go back"
     animation
@@ -112,6 +123,7 @@ power_efficient() {
 
 sultan_optimizations() {
     if [ -d $LYB_TASK ]; then
+        current_tweak=$(grep 'droid.sultan_optimizations=' $DPROP | cut -d'=' -f2)
         clear
         red
         animation_title
@@ -123,7 +135,12 @@ sultan_optimizations() {
         green
         space
         animation
-        echo "1 - Enable Sultan Optimizations"
+        if [ "$current_tweak" = "1" ]; then
+            echo -n "1 - Enable Sultan Optimizations "
+            current
+        else
+            echo "1 - Enable Sultan Optimizations"
+        fi
         red
         space
         animation
@@ -133,7 +150,12 @@ sultan_optimizations() {
         echo "* NOTE * This tweak is recommended for Genshin Impact * NOTE *"
         space
         animation
-        echo "2 - Disable Sultan Optimizations"
+        if [ "$current_tweak" = "0" ]; then
+            echo -n "2 - Disable Sultan Optimizations "
+            current
+        else
+            echo "2 - Disable Sultan Optimizations"
+        fi
         animation
         echo "3 - Go back"
         animation

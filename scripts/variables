@@ -68,6 +68,12 @@ main() {
     DroidConsole
 }
 
+current() {
+    yellow
+    echo "(Selected)"
+    green
+}
+
 droid() {
 	# Make sure node exist and we have rw access
 	if [ -e $1 -a -w $1 ]; then
