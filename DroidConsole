@@ -23,17 +23,19 @@ main() {
     animation
     echo "3 - RAM tweaks"
     animation
-    echo "4 - Miscellaneous"
+    echo "4 - Latency tweaks"
     animation
-    echo "5 - Restore"
+    echo "5 - Miscellaneous"
     animation
-    echo "6 - Github"
+    echo "6 - Restore"
     animation
-    echo "7 - About"
+    echo "7 - Github"
     animation
-    echo "8 - Donate"
+    echo "8 - About"
     animation
-    echo "9 - Exit"
+    echo "9 - Donate"
+    animation
+    echo "10 - Exit"
     space
     reset
     echo "Your input: "
@@ -48,11 +50,13 @@ main() {
         3)
             ram
             ;;
-
         4)
-            misc
+            latency
             ;;
         5)
+            misc
+            ;;
+        6)
             clear
             red
             animation_title
@@ -96,7 +100,7 @@ main() {
                     ;;
             esac
             ;;
-        6)
+        7)
             clear
             blue
             animation
@@ -121,7 +125,7 @@ main() {
             fi
             reset
             ;;
-        7)
+        8)
             clear
             green
             echo "--------------------------------------------------------------"
@@ -173,11 +177,11 @@ main() {
                 leave
             fi
             ;;
-        8)
+        9)
             am start -a android.intent.action.VIEW -d "http://notzeetaa.github.io/Donate-NotZeetaa"
             main
             ;;
-        9)
+        10)
             leave
             ;;
         *)
