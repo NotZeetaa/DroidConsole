@@ -82,6 +82,9 @@ ram() {
         2)
             main
             ;;
+        3)
+            leave
+            ;;
         *)
             red
             echo "Invalid input!"
