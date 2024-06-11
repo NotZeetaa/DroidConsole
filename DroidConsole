@@ -27,15 +27,17 @@ main() {
     animation
     echo "5 - Miscellaneous"
     animation
-    echo "6 - Restore"
+    echo "6 - Extras"
     animation
-    echo "7 - Github"
+    echo "7 - Restore"
     animation
-    echo "8 - About"
+    echo "8 - Github"
     animation
-    echo "9 - Donate"
+    echo "9 - About"
     animation
-    echo "10 - Exit"
+    echo "10 - Donate"
+    animation
+    echo "11 - Exit"
     space
     reset
     echo "Your input: "
@@ -57,6 +59,9 @@ main() {
             misc
             ;;
         6)
+            extras
+            ;;
+        7)
             clear
             red
             animation_title
@@ -100,7 +105,7 @@ main() {
                     ;;
             esac
             ;;
-        7)
+        8)
             clear
             blue
             animation
@@ -125,7 +130,7 @@ main() {
             fi
             reset
             ;;
-        8)
+        9)
             clear
             green
             echo "--------------------------------------------------------------"
@@ -177,11 +182,11 @@ main() {
                 leave
             fi
             ;;
-        9)
+        10)
             am start -a android.intent.action.VIEW -d "http://notzeetaa.github.io/Donate-NotZeetaa"
             main
             ;;
-        10)
+        11)
             leave
             ;;
         *)

@@ -1,0 +1,41 @@
+#!/system/bin/sh
+
+# Call variables script
+. /data/adb/modules/DroidConsole/system/bin/variables
+
+extras() {
+    clear
+    red
+    animation_title
+    echo "***********************"
+    animation_title
+    echo "      × Extras ×      "
+    animation_title
+    echo "***********************"
+    green
+    space
+    animation
+    echo "2 - Main"
+    animation
+    echo "3 - Exit"
+    reset
+    space
+    echo "Your input: "
+    read input
+    case $input in
+        1)
+            
+            ;;
+        2)
+            main
+            ;;
+        3)
+            leave
+            ;;
+        *)
+            red
+            echo "Invalid input!"
+            reset
+            ;;
+    esac
+}
