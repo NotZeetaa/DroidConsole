@@ -6,26 +6,28 @@
 ram() {
     current_tweak=$(grep 'droid.ram_swap=' $DPROP | cut -d'=' -f2)
     clear
-    red
+    blue
     animation_title
-    echo "*****************************"
+    echo "-----------------------------"
     animation_title
     echo "      × RAM Tweaks ×      "
     animation_title
-    echo "*****************************"
+    echo "-----------------------------"
     green
     space
     animation
+    echo "---------------------------"
     if [ "$current_tweak" = "1" ]; then
-        echo -n "1 - Tweak RAM swappiness "
+        echo -n "    1 - Tweak RAM swappiness "
         current
     else
-        echo "1 - Tweak RAM swappiness"
+        echo "    1 - Tweak RAM swappiness"
     fi
     animation
-    echo "2 - Main"
+    echo "    2 - Main"
     animation
-    echo "3 - Exit"
+    echo "    3 - Exit"
+    echo "---------------------------"
     reset
     space
     echo "Your input: "

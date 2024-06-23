@@ -6,21 +6,22 @@
 gpu_throttling() {
     current_tweak=$(grep 'droid.gpu_throttling=' $DPROP | cut -d'=' -f2)
     clear
-    red
+    blue
     animation_title
-    echo "********************************"
+    echo "--------------------------------"
     animation_title
     echo "      × GPU Throttling ×      "
     animation_title
-    echo "********************************"
+    echo "--------------------------------"
     green
     space
     animation
+    echo "--------------------------------"
     if [ "$current_tweak" = "0" ]; then
-        echo -n "1 - Turn off throttling "
+        echo -n "    1 - Turn off throttling "
         current
     else
-        echo "1 - Turn off throttling"
+        echo "    1 - Turn off throttling"
     fi
     red
     space
@@ -30,17 +31,18 @@ gpu_throttling() {
     space
     animation
     if [ "$current_tweak" = "1" ]; then
-        echo -n "2 - Turn on throttling "
+        echo -n "    2 - Turn on throttling "
         current
     else
-        echo "2 - Turn on throttling"
+        echo "    2 - Turn on throttling"
     fi
     animation
-    echo "3 - Go back"
+    echo "    3 - Go back"
     animation
-    echo "4 - Main"
+    echo "    4 - Main"
     animation
-    echo "5 - Exit"
+    echo "    5 - Exit"
+    echo "--------------------------------"
     reset
     space
     echo "Your input: "
@@ -74,35 +76,37 @@ gpu_throttling() {
 gpu_power_level() {
     current_tweak=$(grep 'droid.gpu_power_lvl=' $DPROP | cut -d'=' -f2)
     clear
-    red
+    blue
     animation_title
-    echo "********************************"
+    echo "--------------------------------"
     animation_title
     echo "      × GPU power level ×      "
     animation_title
-    echo "********************************"
+    echo "--------------------------------"
     green
     space
     animation
+    echo "--------------------------------"
     if [ "$current_tweak" = "1" ]; then
-        echo -n "1 - Set max GPU power level "
+        echo -n "    1 - Set max GPU power level "
         current
     else
-        echo "1 - Set max GPU power level"
+        echo "    1 - Set max GPU power level"
     fi
     animation
     if [ "$current_tweak" = "0" ]; then
-        echo -n "2 - Set min GPU power level "
+        echo -n "    2 - Set min GPU power level "
         current
     else
-        echo "2 - Set min GPU power level"
+        echo "    2 - Set min GPU power level"
     fi
     animation
-    echo "3 - Go back"
+    echo "    3 - Go back"
     animation
-    echo "4 - Main"
+    echo "    4 - Main"
     animation
-    echo "5 - Exit"
+    echo "    5 - Exit"
+    echo "--------------------------------"
     reset
     space
     echo "Your input: "
@@ -136,35 +140,37 @@ gpu_power_level() {
 gpu_power_management() {
     current_tweak=$(grep 'droid.gpu_power_management=' $DPROP | cut -d'=' -f2)
     clear
-    red
+    blue
     animation_title
-    echo "*************************************************"
+    echo "-------------------------------------------------"
     animation_title
     echo "      × GPU Power Management Optimization ×      "
     animation_title
-    echo "*************************************************"
+    echo "-------------------------------------------------"
     green
     space
     animation
+    echo "------------------------------------------------------"
     if [ "$current_tweak" = "1" ]; then
-        echo -n "1 - Optimize for performance (This may increase power usage) "
+        echo -n "    1 - Optimize for performance (This may increase power usage) "
         current
     else
-        echo "1 - Optimize for performance (This may increase power usage)"
+        echo "    1 - Optimize for performance (This may increase power usage)"
     fi
     animation
     if [ "$current_tweak" = "0" ]; then
-        echo -n "2 - Optimize for battery "
+        echo -n "    2 - Optimize for battery "
         current
     else
-        echo "2 - Optimize for battery"
+        echo "    2 - Optimize for battery"
     fi
     animation
-    echo "3 - Go back"
+    echo "    3 - Go back"
     animation
-    echo "4 - Main"
+    echo "    4 - Main"
     animation
-    echo "5 - Exit"
+    echo "    5 - Exit"
+    echo "------------------------------------------------------"
     reset
     space
     echo "Your input: "
@@ -197,25 +203,27 @@ gpu_power_management() {
 
 gpu() {
     clear
-    red
+    blue
     animation_title
-    echo "*****************************"
+    echo "-----------------------------"
     animation_title
     echo "      × GPU Tweaks ×      "
     animation_title
-    echo "*****************************"
+    echo "-----------------------------"
     green
     space
     animation
-    echo "1 - GPU Throttling"
+    echo "-----------------------------"
+    echo "    1 - GPU Throttling"
     animation
-    echo "2 - GPU power level"
+    echo "    2 - GPU power level"
     animation
-    echo "3 - GPU power management optimization"
+    echo "    3 - GPU power management optimization"
     animation
-    echo "4 - Main"
+    echo "    4 - Main"
     animation
-    echo "5 - Exit"
+    echo "    5 - Exit"
+    echo "-----------------------------"
     reset
     space
     echo "Your input: "

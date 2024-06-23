@@ -5,25 +5,27 @@
 
 window_feature() {
     clear
-    red
+    blue
     animation_title
-    echo "**********************************"
+    echo "----------------------------------"
     animation_title
     echo "      × Window ignore secure ×      "
     animation_title
-    echo "**********************************"
+    echo "----------------------------------"
     green
     space
     animation
-    echo "1 - Enable window ignore secure feature"
+    echo "--------------------------------------------------"
+    echo "    1 - Enable window ignore secure feature"
     animation
-    echo "2 - Disable window ignore secure feature"
+    echo "    2 - Disable window ignore secure feature"
     animation
-    echo "3 - Go back"
+    echo "    3 - Go back"
     animation
-    echo "4 - Main"
+    echo "    4 - Main"
     animation
-    echo "5 - Exit"
+    echo "    5 - Exit"
+    echo "--------------------------------------------------"
     reset
     space
     echo "Your input: "
@@ -59,35 +61,37 @@ window_feature() {
 power_efficient() {
     current_tweak=$(grep 'droid.power_efficient=' $DPROP | cut -d'=' -f2)
     clear
-    red
+    blue
     animation_title
-    echo "********************************"
+    echo "--------------------------------"
     animation_title
     echo "      × Power Efficient ×      "
     animation_title
-    echo "********************************"
+    echo "--------------------------------"
     green
     space
     animation
+    echo "--------------------------------------------"
     if [ "$current_tweak" = "1" ]; then
-        echo -n "1 - Enable Power Efficient "
+        echo -n "    1 - Enable Power Efficient "
         current
     else
-        echo "1 - Enable Power Efficient"
+        echo "    1 - Enable Power Efficient"
     fi
     animation
     if [ "$current_tweak" = "0" ]; then
-        echo -n "2 - Disable Power Efficient "
+        echo -n "    2 - Disable Power Efficient "
         current
     else
-        echo "2 - Disable Power Efficient"
+        echo "    2 - Disable Power Efficient"
     fi
     animation
-    echo "3 - Go back"
+    echo "    3 - Go back"
     animation
-    echo "4 - Main"
+    echo "    4 - Main"
     animation
-    echo "5 - Exit"
+    echo "    5 - Exit"
+    echo "--------------------------------------------"
     reset
     space
     echo "Your input: "
@@ -125,21 +129,22 @@ sultan_optimizations() {
     if [ -d $LYB_TASK ]; then
         current_tweak=$(grep 'droid.sultan_optimizations=' $DPROP | cut -d'=' -f2)
         clear
-        red
+        blue
         animation_title
-        echo "********************************"
+        echo "--------------------------------"
         animation_title
         echo "      × Sultan Optimizations ×      "
         animation_title
-        echo "********************************"
+        echo "--------------------------------"
         green
         space
         animation
+        echo "--------------------------------------------------"
         if [ "$current_tweak" = "1" ]; then
-            echo -n "1 - Enable Sultan Optimizations "
+            echo -n "    1 - Enable Sultan Optimizations "
             current
         else
-            echo "1 - Enable Sultan Optimizations"
+            echo "    1 - Enable Sultan Optimizations"
         fi
         red
         space
@@ -151,17 +156,18 @@ sultan_optimizations() {
         space
         animation
         if [ "$current_tweak" = "0" ]; then
-            echo -n "2 - Disable Sultan Optimizations "
+            echo -n "    2 - Disable Sultan Optimizations "
             current
         else
-            echo "2 - Disable Sultan Optimizations"
+            echo "    2 - Disable Sultan Optimizations"
         fi
         animation
-        echo "3 - Go back"
+        echo "    3 - Go back"
         animation
-        echo "4 - Main"
+        echo "    4 - Main"
         animation
-        echo "5 - Exit"
+        echo "    5 - Exit"
+        echo "--------------------------------------------------"
         reset
         space
         echo "Your input: "
@@ -199,13 +205,13 @@ sultan_optimizations() {
 
 battery_health() {
     clear
-    red
+    blue
     animation_title
-    echo "*****************************"
+    echo "-----------------------------"
     animation_title
     echo "      × Battery Health ×      "
     animation_title
-    echo "*****************************"
+    echo "-----------------------------"
     reset
     space
     animation
@@ -213,11 +219,13 @@ battery_health() {
     green
     space
     animation
-    echo "1 - Go back"
+    echo "---------------------------"
+    echo "    1 - Go back"
     animation
-    echo "2 - Main"
+    echo "    2 - Main"
     animation
-    echo "3 - Exit"
+    echo "    3 - Exit"
+    echo "---------------------------"
     reset
     space
     echo "Your input: "
@@ -242,13 +250,13 @@ battery_health() {
 
 dexopt_optimization() {
     clear
-    red
+    blue
     animation_title
-    echo "***********************************"
+    echo "-----------------------------------"
     animation_title
     echo "      × Dexopt Optimization ×      "
     animation_title
-    echo "***********************************"
+    echo "-----------------------------------"
     reset
     space
     animation
@@ -256,13 +264,15 @@ dexopt_optimization() {
     green
     space
     animation
-    echo "1 - Optimize"
+    echo "---------------------------"
+    echo "    1 - Optimize"
     animation
-    echo "2 - Go back"
+    echo "    2 - Go back"
     animation
-    echo "3 - Main"
+    echo "    3 - Main"
     animation
-    echo "4 - Exit"
+    echo "    4 - Exit"
+    echo "---------------------------"
     reset
     space
     echo "Your input: "
@@ -290,13 +300,13 @@ dexopt_optimization() {
 
 dexopt_lvl() {
     clear
-    red
+    blue
     animation_title
-    echo "***********************************"
+    echo "-----------------------------------"
     animation_title
     echo "      × Select Optimization Level ×      "
     animation_title
-    echo "***********************************"
+    echo "-----------------------------------"
     reset
     space
     animation
@@ -304,15 +314,17 @@ dexopt_lvl() {
     green
     space
     animation
-    echo "1 - Extreme"
+    echo "---------------------------"
+    echo "    1 - Extreme"
     animation
-    echo "2 - Speed"
+    echo "    2 - Speed"
     animation
-    echo "3 - Go back"
+    echo "    3 - Go back"
     animation
-    echo "4 - Main"
+    echo "    4 - Main"
     animation
-    echo "5 - Exit"
+    echo "    5 - Exit"
+    echo "---------------------------"
     reset
     space
     echo "Your input: "
@@ -353,13 +365,13 @@ dexopt_lvl() {
 
 fix_rom_glitches() {
     clear
-    red
+    blue
     animation_title
-    echo "*****************************"
+    echo "-----------------------------"
     animation_title
     echo "      × Fix ROM Glitches ×      "
     animation_title
-    echo "*****************************"
+    echo "-----------------------------"
     reset
     space
     animation
@@ -367,13 +379,15 @@ fix_rom_glitches() {
     green
     space
     animation
-    echo "1 - Fix ROM Glitches"
+    echo "--------------------------------"
+    echo "    1 - Fix ROM Glitches"
     animation
-    echo "2 - Go back"
+    echo "    2 - Go back"
     animation
-    echo "3 - Main"
+    echo "    3 - Main"
     animation
-    echo "4 - Exit"
+    echo "    4 - Exit"
+    echo "--------------------------------"
     reset
     space
     echo "Your input: "
@@ -402,13 +416,13 @@ fix_rom_glitches() {
 
 xiaomi_joyose() {
     clear
-    red
+    blue
     animation_title
-    echo "*******************************"
+    echo "-------------------------------"
     animation_title
     echo "      × Xiaomi Joyose ×      "
     animation_title
-    echo "*******************************"
+    echo "-------------------------------"
     animation
     echo "This might increase performance in certain scenarios"
     space
@@ -416,15 +430,17 @@ xiaomi_joyose() {
     green
     space
     animation
-    echo "1 - Enable Xiaomi Joyose"
+    echo "-----------------------------------"
+    echo "    1 - Enable Xiaomi Joyose"
     animation
-    echo "2 - Disable Xiaomi Joyose"
+    echo "    2 - Disable Xiaomi Joyose"
     animation
-    echo "3 - Go back"
+    echo "    3 - Go back"
     animation
-    echo "4 - Main"
+    echo "    4 - Main"
     animation
-    echo "5 - Exit"
+    echo "    5 - Exit"
+    echo "-----------------------------------"
     reset
     space
     echo "Your input: "
@@ -460,33 +476,35 @@ xiaomi_joyose() {
 
 misc() {
     clear
-    red
+    blue
     animation_title
-    echo "*****************************"
+    echo "-----------------------------"
     animation_title
     echo "      × Miscellaneous ×      "
     animation_title
-    echo "*****************************"
+    echo "-----------------------------"
     green
     space
     animation
-    echo "1 - Window ignore secure feature"
+    echo "------------------------------------------"
+    echo "    1 - Window ignore secure feature"
     animation
-    echo "2 - Power Efficient"
+    echo "    2 - Power Efficient"
     animation
-    echo "3 - Sultan Optimizations"
+    echo "    3 - Sultan Optimizations"
     animation
-    echo "4 - Check Battery Health"
+    echo "    4 - Check Battery Health"
     animation
-    echo "5 - Dexopt Optimization"
+    echo "    5 - Dexopt Optimization"
     animation
-    echo "6 - Fix ROM Glitches"
+    echo "    6 - Fix ROM Glitches"
     animation
-    echo "7 - Xiaomi Joyose"
+    echo "    7 - Xiaomi Joyose"
     animation
-    echo "8 - Main"
+    echo "    8 - Main"
     animation
-    echo "9 - Exit"
+    echo "    9 - Exit"
+    echo "------------------------------------------"
     reset
     space
     echo "Your input: "

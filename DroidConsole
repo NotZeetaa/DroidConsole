@@ -7,37 +7,39 @@
 main() {
     clear
     echo -en "\e[40m\e[37m"
-    red
+    blue
     animation_title
-    echo "*****************************"
+    echo "-----------------------------"
     animation_title
     echo "      × DroidConsole ×      "
     animation_title
-    echo "*****************************"
+    echo "-----------------------------"
     green
     space
     animation
-    echo "1 - CPU tweaks"
+    echo "-----------------------------"
+    echo "    1 - CPU tweaks"
     animation
-    echo "2 - GPU tweaks"
+    echo "    2 - GPU tweaks"
     animation
-    echo "3 - RAM tweaks"
+    echo "    3 - RAM tweaks"
     animation
-    echo "4 - Latency tweaks"
+    echo "    4 - Latency tweaks"
     animation
-    echo "5 - Miscellaneous"
+    echo "    5 - Miscellaneous"
     animation
-    echo "6 - Extras"
+    echo "    6 - Extras"
     animation
-    echo "7 - Restore"
+    echo "    7 - Restore"
     animation
-    echo "8 - Github"
+    echo "    8 - Github"
     animation
-    echo "9 - About"
+    echo "    9 - About"
     animation
-    echo "10 - Donate"
+    echo "    10 - Donate"
     animation
-    echo "11 - Exit"
+    echo "    11 - Exit"
+    echo "-----------------------------"
     space
     reset
     echo "Your input: "
