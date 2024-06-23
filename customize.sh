@@ -15,8 +15,6 @@ mv -f $MODPATH/scripts/ram $MODPATH/system/bin/ram
 mv -f $MODPATH/scripts/gpu $MODPATH/system/bin/gpu
 mv -f $MODPATH/scripts/misc $MODPATH/system/bin/misc
 mv -f $MODPATH/scripts/variables $MODPATH/system/bin/variables
-mv -f $MODPATH/scripts/latency $MODPATH/system/bin/latency
-mv -f $MODPATH/scripts/extras $MODPATH/system/bin/extras
 mv -f $MODPATH/restore $MODPATH/system/bin/restore
 
 # Clean up
@@ -42,6 +40,4 @@ set_perm $MODPATH/system/bin/ram 0 2000 0755
 set_perm $MODPATH/system/bin/gpu 0 2000 0755
 set_perm $MODPATH/system/bin/misc 0 2000 0755
 set_perm $MODPATH/system/bin/variables 0 2000 0755
-set_perm $MODPATH/system/bin/latency 0 2000 0755
-set_perm $MODPATH/system/bin/extras 0 2000 0755
 set_perm $MODPATH/system/bin/restore 0 2000 0755
