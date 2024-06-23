@@ -474,6 +474,75 @@ xiaomi_joyose() {
     esac
 }
 
+floating_bar() {
+    current_tweak=$(grep 'droid.floating_bar=' $DPROP | cut -d'=' -f2)
+    clear
+    blue
+    animation_title
+    echo "-------------------------------"
+    animation_title
+    echo "      × Floating Search Bar ×      "
+    animation_title
+    echo "-------------------------------"
+    animation
+    space
+    echo "This will only work on Pixel launcher (Tested on A14 only)"
+    green
+    space
+    animation
+    echo "----------------------------------------"
+    if [ "$current_tweak" = "1" ]; then
+        echo -n "    1 - Enable Google Floating Search Bar "
+        current
+    else
+        echo "    1 - Enable Google Floating Search Bar"
+    fi
+    animation
+    if [ "$current_tweak" = "0" ]; then
+        echo -n "    2 - Disable Google Floating Search Bar "
+        current
+    else
+        echo "    2 - Disable Google Floating Search Bar"
+    fi
+    animation
+    echo "    3 - Go back"
+    animation
+    echo "    4 - Main"
+    animation
+    echo "    5 - Exit"
+    echo "----------------------------------------"
+    reset
+    space
+    echo "Your input: "
+    read input
+    case $input in
+        1)
+            resetprop -n droid.floating_bar 1 && sed -i '/droid.floating_bar=/s/.*/droid.floating_bar=1/' $DPROP
+            finish
+            misc
+            ;;
+        2)
+            resetprop -n droid.floating_bar 0 && sed -i '/droid.floating_bar=/s/.*/droid.floating_bar=0/' $DPROP
+            finish
+            misc
+            ;;
+        3)
+            misc
+            ;;
+        4)
+            main
+            ;;
+        5)
+            leave
+            ;;
+        *)
+            red
+            echo "Invalid input!"
+            reset
+            ;;
+    esac
+}
+
 misc() {
     clear
     blue
@@ -501,9 +570,11 @@ misc() {
     animation
     echo "    7 - Xiaomi Joyose"
     animation
-    echo "    8 - Main"
+    echo "    8 - Google Floating Search Bar"
     animation
-    echo "    9 - Exit"
+    echo "    9 - Main"
+    animation
+    echo "    10 - Exit"
     echo "------------------------------------------"
     reset
     space
@@ -532,9 +603,12 @@ misc() {
             xiaomi_joyose
             ;;
         8)
-            main
+            floating_bar
             ;;
         9)
+            main
+            ;;
+        10)
             leave
             ;;
         *)

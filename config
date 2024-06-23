@@ -82,10 +82,10 @@ elif [ $(getprop droid.sultan_optimizations) == 0 ]; then
     echo "N" > $LYB_TASK/parameters/lyb_sultan_pid_shrink
 fi
 
-[ $(getprop droid.floating_bar) ] && if [ $(getprop droid.floating_bar) == 1 ]; then
+if [ $(getprop droid.floating_bar) -eq 1 ]; then
     su -c 'device_config put launcher ENABLE_FLOATING_SEARCH_BAR true'
     su -c 'am force-stop com.google.android.apps.nexuslauncher'
-elif [ $(getprop droid.floating_bar) == 0 ];
+elif [ $(getprop droid.floating_bar) -eq 0 ]; then
     su -c 'device_config put launcher ENABLE_FLOATING_SEARCH_BAR false'
     su -c 'am force-stop com.google.android.apps.nexuslauncher'
 fi
