@@ -572,9 +572,11 @@ misc() {
     animation
     echo "    8 - Google Floating Search Bar"
     animation
-    echo "    9 - Main"
+    echo "    9 - Radio information"
     animation
-    echo "    10 - Exit"
+    echo "    10 - Main"
+    animation
+    echo "    11 - Exit"
     echo "------------------------------------------"
     reset
     space
@@ -606,9 +608,13 @@ misc() {
             floating_bar
             ;;
         9)
-            main
+            su -c 'am start -n com.android.phone/.settings.RadioInfo'
+            misc
             ;;
         10)
+            main
+            ;;
+        11)
             leave
             ;;
         *)
