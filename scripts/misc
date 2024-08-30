@@ -543,6 +543,76 @@ floating_bar() {
     esac
 }
 
+debloat_gms() {
+    current_tweak=$(grep 'droid.gms=' $DPROP | cut -d'=' -f2)
+    clear
+    blue
+    animation_title
+    echo "-------------------------------"
+    animation_title
+    echo "      × Debloat Google Play Services ×      "
+    animation_title
+    echo "-------------------------------"
+    animation
+    space
+    red
+    echo "WARNING: This might cause some instability system issues"
+    green
+    space
+    animation
+    echo "----------------------------------------"
+    if [ "$current_tweak" = "1" ]; then
+        echo -n "    1 - Debloat Google Play Services "
+        current
+    else
+        echo "    1 - Debloat Google Play Services"
+    fi
+    animation
+    if [ "$current_tweak" = "0" ]; then
+        echo -n "    2 - Revert debloat Google Play Services "
+        current
+    else
+        echo "    2 - Revert debloat Google Play Services"
+    fi
+    animation
+    echo "    3 - Go back"
+    animation
+    echo "    4 - Main"
+    animation
+    echo "    5 - Exit"
+    echo "----------------------------------------"
+    reset
+    space
+    echo "Your input: "
+    read input
+    case $input in
+        1)
+            resetprop -n droid.gms 1 && sed -i '/droid.gms=/s/.*/droid.gms=1/' $DPROP
+            finish
+            misc
+            ;;
+        2)
+            resetprop -n droid.gms 0 && sed -i '/droid.gms=/s/.*/droid.gms=0/' $DPROP
+            finish
+            misc
+            ;;
+        3)
+            misc
+            ;;
+        4)
+            main
+            ;;
+        5)
+            leave
+            ;;
+        *)
+            red
+            echo "Invalid input!"
+            reset
+            ;;
+    esac
+}
+
 misc() {
     clear
     blue
@@ -574,9 +644,11 @@ misc() {
     animation
     echo "    9 - Radio information"
     animation
-    echo "    10 - Main"
+    echo "    10 - Debloat GMS"
     animation
-    echo "    11 - Exit"
+    echo "    11 - Main"
+    animation
+    echo "    12 - Exit"
     echo "------------------------------------------"
     reset
     space
@@ -612,9 +684,12 @@ misc() {
             misc
             ;;
         10)
-            main
+            debloat_gms
             ;;
         11)
+            main
+            ;;
+        12)
             leave
             ;;
         *)

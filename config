@@ -90,6 +90,130 @@ elif [ $(getprop droid.floating_bar) -eq 0 ]; then
     su -c 'am force-stop com.google.android.apps.nexuslauncher'
 fi
 
+# Function to force stop Google Play Services
+force_stop_gms() {
+    su -c 'am force-stop com.google.android.gms'
+    if [ $? -eq 0 ]; then
+        echo "Successfully force-stopped Google Play Services" | tee -a /sdcard/droid.log
+    else
+        echo "Failed to force-stop Google Play Services" | tee -a /sdcard/droid.log
+    fi
+}
+
+# Function to disable a service
+disable_service() {
+    local service_name="$1"
+    su -c "pm disable-user --user 0 \"$service_name\""
+    if [ $? -eq 0 ]; then
+        echo "Successfully disabled: $service_name" | tee -a /sdcard/droid.log
+    else
+        echo "Failed to disable: $service_name" | tee -a /sdcard/droid.log
+    fi
+}
+
+# Function to enable a service
+enable_service() {
+    local service_name="$1"
+    su -c "pm enable --user 0 \"$service_name\""
+    if [ $? -eq 0 ]; then
+        echo "Successfully enabled: $service_name" | tee -a /sdcard/droid.log
+    else
+        echo "Failed to enable: $service_name" | tee -a /sdcard/droid.log
+    fi
+}
+
+# Main logic
+if [ $(getprop droid.gms) -eq 1 ]; then
+    echo "Force-stopping Google Play Services..." | tee -a /sdcard/droid.log
+    force_stop_gms
+
+    echo "Disabling Google Play Services components..." | tee -a /sdcard/droid.log
+
+    # Disable Google Play Services Wakeup Services
+    disable_service "com.google.android.gms/.ads.identifier.service.AdvertisingIdService"
+    disable_service "com.google.android.gms/.ads.AdRequestBrokerService"
+    disable_service "com.google.android.gms/.location.reporting.service.ReportingAndroidService"
+    disable_service "com.google.android.gms/.nearby.exposurenotification.service.ExposureNotificationService"
+    disable_service "com.google.android.gms/.nearby.exposurenotification.service.NearbyMessagesService"
+    disable_service "com.google.android.gms/.nearby.sharing.ShareTargetDiscoveryService"
+
+    # Disable Google Play Services Location Services
+    disable_service "com.google.android.gms/.location.reporting.service.ReportingAndroidService"
+    disable_service "com.google.android.gms/.location.reporting.service.LocationHistoryInjectorService"
+    disable_service "com.google.android.gms/.location.activity.ActivityRecognitionService"
+    disable_service "com.google.android.gms/.location.fused.FusedLocationService"
+
+    # Disable Google Play Services Analytics Services
+    disable_service "com.google.android.gms/.analytics.AnalyticsService"
+    disable_service "com.google.android.gms/.analytics.internal.PlayLogReportingService"
+    disable_service "com.google.android.gms/.analytics.service.PlayLogMonitorIntervalProvider"
+
+    # Disable Google Backup Transport Service
+    disable_service "com.google.android.gms/.backup.BackupTransportService"
+    disable_service "com.google.android.gms/.backup.BackupService"
+
+    # Disable Google Play Services for Instant Apps
+    disable_service "com.google.android.gms/.instantapps.InstantAppsService"
+    disable_service "com.google.android.gms/.instantapps.InstantAppsRoutingService"
+
+    # Disable Google Play Services Cast Media Router
+    disable_service "com.google.android.gms/.cast.media.CastMediaRouteProviderService"
+    disable_service "com.google.android.gms/.cast.service.CastRemoteDisplayProviderService"
+
+    # Disable Nearby Sharing
+    disable_service "com.google.android.gms/.nearby.sharing.ShareTargetDiscoveryService"
+
+    # Disable Google Play Protect
+    disable_service "com.google.android.gms/.security.recaptcha.RecaptchaService"
+
+    echo "Disabling services completed." | tee -a /sdcard/droid.log
+
+elif [ $(getprop droid.gms) -eq 0 ]; then
+    echo "Force-stopping Google Play Services..." | tee -a /sdcard/droid.log
+    force_stop_gms
+    
+    echo "Re-enabling Google Play Services components..." | tee -a /sdcard/droid.log
+
+    # Re-enable Google Play Services Wakeup Services
+    enable_service "com.google.android.gms/.ads.identifier.service.AdvertisingIdService"
+    enable_service "com.google.android.gms/.ads.AdRequestBrokerService"
+    enable_service "com.google.android.gms/.location.reporting.service.ReportingAndroidService"
+    enable_service "com.google.android.gms/.nearby.exposurenotification.service.ExposureNotificationService"
+    enable_service "com.google.android.gms/.nearby.exposurenotification.service.NearbyMessagesService"
+    enable_service "com.google.android.gms/.nearby.sharing.ShareTargetDiscoveryService"
+
+    # Re-enable Google Play Services Location Services
+    enable_service "com.google.android.gms/.location.reporting.service.ReportingAndroidService"
+    enable_service "com.google.android.gms/.location.reporting.service.LocationHistoryInjectorService"
+    enable_service "com.google.android.gms/.location.activity.ActivityRecognitionService"
+    enable_service "com.google.android.gms/.location.fused.FusedLocationService"
+
+    # Re-enable Google Play Services Analytics Services
+    enable_service "com.google.android.gms/.analytics.AnalyticsService"
+    enable_service "com.google.android.gms/.analytics.internal.PlayLogReportingService"
+    enable_service "com.google.android.gms/.analytics.service.PlayLogMonitorIntervalProvider"
+
+    # Re-enable Google Backup Transport Service
+    enable_service "com.google.android.gms/.backup.BackupTransportService"
+    enable_service "com.google.android.gms/.backup.BackupService"
+
+    # Re-enable Google Play Services for Instant Apps
+    enable_service "com.google.android.gms/.instantapps.InstantAppsService"
+    enable_service "com.google.android.gms/.instantapps.InstantAppsRoutingService"
+
+    # Re-enable Google Play Services Cast Media Router
+    enable_service "com.google.android.gms/.cast.media.CastMediaRouteProviderService"
+    enable_service "com.google.android.gms/.cast.service.CastRemoteDisplayProviderService"
+
+    # Re-enable Nearby Sharing
+    enable_service "com.google.android.gms/.nearby.sharing.ShareTargetDiscoveryService"
+
+    # Re-enable Google Play Protect
+    enable_service "com.google.android.gms/.security.recaptcha.RecaptchaService"
+
+    echo "Re-enabling services completed." | tee -a /sdcard/droid.log
+fi
+
 elif [ $(getprop droid.restore) == 1 ]; then
 restore
 fi
